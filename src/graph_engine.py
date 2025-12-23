@@ -1,20 +1,19 @@
 """
 智能图计算引擎适配器
-目的：无缝兼容 EasyGraph 和 NetworkX，确保项目在任何环境下都能运行
 """
 
 import warnings
 import pandas as pd
 
 class GraphEngine:
-    """统一的图计算接口，自动选择后端引擎"""
+    """统一的图计算接口,自动选择后端引擎"""
     
     def __init__(self, backend='auto'):
         """
         初始化图引擎
         
         参数:
-            backend: 'auto'（自动选择）, 'easygraph', 或 'networkx'
+            backend: 'auto', 'easygraph', 或 'networkx'
         """
         self.backend = backend
         self.engine = None
@@ -78,7 +77,7 @@ class GraphEngine:
                     communities_dict.setdefault(comm_id, []).append(node)
                 return list(communities_dict.values())
             except ImportError:
-                warnings.warn("未安装python-louvain，使用简单的连通组件作为社区")
+                warnings.warn("未安装python-louvain,使用简单的连通组件作为社区")
                 return list(self.engine.connected_components(G.to_undirected()))
     
     def calculate_pagerank(self, G, alpha=0.85):

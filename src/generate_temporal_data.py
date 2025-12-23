@@ -1,6 +1,6 @@
 """
 生成开源协作网络时序数据
-生成过去12个月的模拟协作数据，用于时序可视化分析
+生成过去12个月的模拟协作数据,用于时序可视化分析
 """
 
 import pandas as pd
@@ -24,7 +24,7 @@ def generate_temporal_network_data(months=12, num_developers=50):
     # 创建数据目录
     os.makedirs('../data', exist_ok=True)
     
-    # 1. 生成开发者信息（静态属性）
+    # 生成开发者信息（静态属性）
     print("1. 生成开发者信息...")
     developers = []
     tech_stacks = ['Python', 'JavaScript', 'Java', 'Go', 'Rust', 'C++', 'TypeScript']
@@ -34,14 +34,14 @@ def generate_temporal_network_data(months=12, num_developers=50):
             'developer_id': i + 1,
             'name': f'Dev_{i+1:03d}',
             'primary_tech': random.choice(tech_stacks),
-            'join_date': datetime(2023, 1, 1) + timedelta(days=random.randint(0, 365)),
+            'join_date': datetime(2025, 1, 1) + timedelta(days=random.randint(0, 365)),
             'activity_level': random.uniform(0.3, 1.0)  # 活跃度
         }
         developers.append(dev)
     
     developers_df = pd.DataFrame(developers)
     
-    # 2. 生成时序协作关系（动态网络）
+    # 生成时序协作关系（动态网络）
     print("2. 生成时序协作关系...")
     all_edges = []
     
@@ -100,7 +100,7 @@ def generate_temporal_network_data(months=12, num_developers=50):
     
     edges_df = pd.DataFrame(all_edges)
     
-    # 3. 生成月度聚合指标（为DataEase准备）
+    # 生成月度聚合指标（为DataEase准备）
     print("3. 生成月度聚合指标...")
     monthly_metrics = []
     
@@ -118,7 +118,7 @@ def generate_temporal_network_data(months=12, num_developers=50):
     
     monthly_df = pd.DataFrame(monthly_metrics)
     
-    # 4. 保存所有数据文件
+    # 保存所有数据文件
     print("4. 保存数据文件...")
     
     # 开发者信息
