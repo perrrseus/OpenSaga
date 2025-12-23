@@ -1,0 +1,10 @@
+easygraph==0.2.1
+networkx
+python-louvain
+
+pandas
+numpy
+
+matplotlib
+jupyter
+seaborn  
