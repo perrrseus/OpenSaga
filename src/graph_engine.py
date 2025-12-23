@@ -112,18 +112,27 @@ def test_engine():
     info = engine.get_info()
     print(f"当前使用引擎: {info['backend']} (版本: {info['version']})")
     
-    # 创建测试图
+    # 创建更复杂的测试图
     G = engine.create_graph(directed=True)
-    G.add_edge(1, 2)
-    G.add_edge(2, 3)
-    G.add_edge(3, 1)
+    
+    # 添加更多节点和边
+    for i in range(1, 11):  # 10个节点
+        G.add_node(i)
+    
+    # 添加15条边
+    edges = [(1,2), (2,3), (3,4), (4,5), (5,1),
+             (1,6), (2,7), (3,8), (4,9), (5,10),
+             (6,7), (7,8), (8,9), (9,10), (10,6)]
+    
+    for source, target in edges:
+        G.add_edge(source, target, weight=1.0)
     
     print(f"图节点数: {G.number_of_nodes()}")
     print(f"图边数: {G.number_of_edges()}")
     
     # 计算PageRank
     pagerank = engine.calculate_pagerank(G)
-    print(f"PageRank计算成功: {pagerank}")
+    print(f"PageRank计算成功,最高分: {max(pagerank.values()):.4f}")
     
     print("✅ 引擎测试通过！")
     print("=" * 50)
