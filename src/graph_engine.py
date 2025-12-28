@@ -6,46 +6,37 @@ import warnings
 import pandas as pd
 
 class GraphEngine:
-    """统一的图计算接口,自动选择后端引擎"""
     
     def __init__(self, backend='auto'):
-        """
-        初始化图引擎
-        
-        参数:
-            backend: 'auto', 'easygraph', 或 'networkx'
-        """
         self.backend = backend
         self.engine = None
         self._init_engine()
         
     def _init_engine(self):
-        """初始化后端引擎"""
         if self.backend == 'easygraph' or self.backend == 'auto':
             try:
                 import easygraph as eg
                 self.engine = eg
                 self.engine_name = 'EasyGraph'
-                print(f"✅ 成功加载 {self.engine_name}")
+                print(f"成功加载 {self.engine_name}")
                 return
             except ImportError as e:
-                print(f"⚠️ EasyGraph 加载失败: {e}")
+                print(f"EasyGraph 加载失败: {e}")
                 if self.backend == 'easygraph':
                     raise RuntimeError("指定使用EasyGraph但加载失败")
         
-        # 回退到 NetworkX
+        # 回退
         try:
             import networkx as nx
             self.engine = nx
             self.engine_name = 'NetworkX'
             
-            # 为 NetworkX 添加 EasyGraph 风格的函数别名
             if not hasattr(self.engine, 'DiGraph'):
                 self.engine.DiGraph = nx.DiGraph
             if not hasattr(self.engine, 'Graph'):
                 self.engine.Graph = nx.Graph
                 
-            print(f"✅ 使用备用引擎: {self.engine_name}")
+            print(f"使用备用引擎: {self.engine_name}")
         except ImportError as e:
             raise RuntimeError(f"所有图引擎加载失败: {e}")
     
