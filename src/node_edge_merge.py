@@ -120,10 +120,11 @@ def generate_bidirectional_collaboration_data():
     df_final = df_final.reset_index(drop=True)
     print(f"   ✅ 数据清洗完成，最终记录数：{len(df_final)} 条")
     
-    # 保存结果
+    # 保存结果到viz文件夹
     print("\n8. 保存结果...")
-    df_final.to_csv(output_csv_path, encoding='utf-8-sig', index=False)
-    print(f"   ✅ 双向协作数据已保存：{output_csv_path}")
+    viz_output_path = os.path.join(project_path, 'viz', '协作网络_合并表.csv')
+    df_final.to_csv(viz_output_path, encoding='utf-8-sig', index=False)
+    print(f"   ✅ 双向协作数据已保存：{viz_output_path}")
     
     # 显示统计信息
     print("\n📊 数据统计：")
@@ -135,6 +136,7 @@ def generate_bidirectional_collaboration_data():
     
     print("\n" + "=" * 60)
     print("✅ 包含整年协作关系的双向协作数据生成完成！")
+    print("✅ 所有修改后的数据已保存到viz文件夹")
     print("=" * 60)
     
     return df_final

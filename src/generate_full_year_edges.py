@@ -99,11 +99,6 @@ def generate_full_year_edges():
     print(f"   ✅ 数据行数: {len(edge_data)} 条")
     print(f"   ✅ 数据列名: {list(edge_data.columns)}")
     
-    # 保存一份到data文件夹，保持与原有流程兼容
-    data_output_path = os.path.join(project_path, 'data', 'for_viz_edges.csv')
-    edge_data.to_csv(data_output_path, index=False, encoding='utf-8')
-    print(f"   ✅ 边数据已保存到: {data_output_path}")
-    
     # 显示统计信息
     print("\n📊 数据统计:")
     print(f"   • 总边数: {len(edge_data)}")
