@@ -132,14 +132,27 @@ def generate_community_evolution():
             # 记录月度汇总
             avg_community_size = sum(len(c) for c in communities) / len(communities) if communities else 0
             
+            # 计算社区规模的标准差
+            if len(communities) > 1:
+                import numpy as np
+                community_sizes = [len(c) for c in communities]
+                community_size_std = np.std(community_sizes)
+            else:
+                community_size_std = 0
+            
+            # 计算平均协作强度
+            avg_collab_strength = month_data['weight'].mean() if len(month_data) > 0 else 0
+            
             monthly_summary.append({
                 'year_month': month,
                 'month_index': month_idx,
                 'num_active_developers': num_active,
                 'num_collaborations': len(month_data),
                 'num_edges': num_edges,
+                'avg_collab_strength': round(avg_collab_strength, 4),
                 'num_communities': num_communities,
                 'avg_community_size': round(avg_community_size, 1),
+                'community_size_std': round(community_size_std, 2),
                 'network_density': round(network_density, 4),
                 'avg_clustering_coefficient': round(avg_clustering, 4),
                 'num_connected_components': num_connected_components
@@ -154,8 +167,10 @@ def generate_community_evolution():
                 'num_active_developers': num_active,
                 'num_collaborations': len(month_data),
                 'num_edges': num_edges,
+                'avg_collab_strength': 0,
                 'num_communities': 0,
                 'avg_community_size': 0,
+                'community_size_std': 0,
                 'network_density': 0,
                 'avg_clustering_coefficient': 0,
                 'num_connected_components': num_active if num_active > 0 else 0
