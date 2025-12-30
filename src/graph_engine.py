@@ -1,6 +1,4 @@
-"""
-智能图计算引擎适配器
-"""
+"""图计算引擎适配器"""
 
 import warnings
 import pandas as pd
@@ -125,7 +123,7 @@ def test_engine():
     pagerank = engine.calculate_pagerank(G)
     print(f"PageRank计算成功,最高分: {max(pagerank.values()):.4f}")
     
-    print("✅ 引擎测试通过！")
+    print(" 引擎测试通过！")
     print("=" * 50)
     return engine
 

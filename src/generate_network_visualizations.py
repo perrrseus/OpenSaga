@@ -26,14 +26,13 @@ def generate_network_visualizations():
     print("=" * 60)
     
     # 获取项目根目录
-    project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # 定义文件路径
-    data_dir = os.path.join(project_path, 'data')
+data_dir = os.path.join(project_path, 'data')
     viz_dir = os.path.join(project_path, 'viz')
     graph_dir = os.path.join(project_path, 'graph')
     
-    # 确保输出目录存在
     os.makedirs(graph_dir, exist_ok=True)
     
     # 1. 加载数据
@@ -43,11 +42,11 @@ def generate_network_visualizations():
         latest_network_df = pd.read_csv(os.path.join(data_dir, 'latest_network.csv'))
         node_df = pd.read_csv(os.path.join(viz_dir, 'for_viz_nodes.csv'))
         
-        print(f"   ✅ 开发者数据: {len(developers_df)} 位开发者")
-        print(f"   ✅ 最新网络数据: {len(latest_network_df)} 条边")
-        print(f"   ✅ 节点数据: {len(node_df)} 个节点")
+        print(f"    开发者数据: {len(developers_df)} 位开发者")
+        print(f"    最新网络数据: {len(latest_network_df)} 条边")
+        print(f"    节点数据: {len(node_df)} 个节点")
     except Exception as e:
-        print(f"   ❌ 加载数据失败: {e}")
+        print(f"    加载数据失败: {e}")
         return None
     
     # 2. 生成开发者协作网络图
@@ -63,8 +62,8 @@ def generate_network_visualizations():
     generate_tech_stack_collaboration_graph(developers_df, latest_network_df, graph_dir)
     
     print("\n" + "=" * 60)
-    print("✅ 所有网络可视化图生成完成！")
-    print(f"✅ 图像已保存到: {graph_dir}")
+    print(" 所有网络可视化图生成完成！")
+    print(f" 图像已保存到: {graph_dir}")
     print("=" * 60)
 
 def generate_developer_collaboration_graph(developers_df, latest_network_df, node_df, output_dir):
@@ -142,7 +141,7 @@ def generate_developer_collaboration_graph(developers_df, latest_network_df, nod
     plt.savefig(output_path, dpi=300, bbox_inches='tight', transparent=False, facecolor='white')
     plt.close()
     
-    print(f"   ✅ 已保存: {output_path}")
+    print(f"    已保存: {output_path}")
 
 def generate_core_developer_influence_graph(developers_df, latest_network_df, node_df, output_dir):
     """
@@ -222,7 +221,7 @@ def generate_core_developer_influence_graph(developers_df, latest_network_df, no
     plt.savefig(output_path, dpi=300, bbox_inches='tight', transparent=False, facecolor='white')
     plt.close()
     
-    print(f"   ✅ 已保存: {output_path}")
+    print(f"    已保存: {output_path}")
 
 def generate_tech_stack_collaboration_graph(developers_df, latest_network_df, output_dir):
     """
@@ -315,7 +314,7 @@ def generate_tech_stack_collaboration_graph(developers_df, latest_network_df, ou
     plt.savefig(output_path, dpi=300, bbox_inches='tight', transparent=False, facecolor='white')
     plt.close()
     
-    print(f"   ✅ 已保存: {output_path}")
+    print(f"    已保存: {output_path}")
 
 if __name__ == "__main__":
     generate_network_visualizations()

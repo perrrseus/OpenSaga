@@ -23,13 +23,12 @@ def generate_for_viz_data():
     print("=" * 60)
     
     # 获取项目根目录
-    project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # 定义文件路径
-    data_dir = os.path.join(project_path, 'data')
+data_dir = os.path.join(project_path, 'data')
     viz_dir = os.path.join(project_path, 'viz')
     
-    # 确保输出目录存在
     os.makedirs(viz_dir, exist_ok=True)
     
     # 1. 加载数据
@@ -41,13 +40,13 @@ def generate_for_viz_data():
         latest_network_df = pd.read_csv(os.path.join(data_dir, 'latest_network.csv'))
         community_df = pd.read_csv(os.path.join(data_dir, 'community_evolution_detail.csv'))
         
-        print(f"   ✅ 开发者数据: {len(developers_df)} 位开发者")
-        print(f"   ✅ 协作记录: {len(collab_df)} 条时序记录")
-        print(f"   ✅ 月度指标: {len(monthly_df)} 个月份")
-        print(f"   ✅ 最新网络: {len(latest_network_df)} 条边")
-        print(f"   ✅ 社区数据: {len(community_df)} 条记录")
+        print(f"    开发者数据: {len(developers_df)} 位开发者")
+        print(f"    协作记录: {len(collab_df)} 条时序记录")
+        print(f"    月度指标: {len(monthly_df)} 个月份")
+        print(f"    最新网络: {len(latest_network_df)} 条边")
+        print(f"    社区数据: {len(community_df)} 条记录")
     except Exception as e:
-        print(f"   ❌ 加载数据失败: {e}")
+        print(f"    加载数据失败: {e}")
         return None
     
     # 2. 生成节点数据 (for_viz_nodes.csv)
@@ -68,14 +67,14 @@ def generate_for_viz_data():
         if edge['source'] in G and edge['target'] in G:
             G.add_edge(edge['source'], edge['target'], weight=edge['weight'])
     
-    print(f"   ✅ 构建了 {G.number_of_nodes()} 个节点, {G.number_of_edges()} 条边的网络")
+    print(f"    构建了 {G.number_of_nodes()} 个节点, {G.number_of_edges()} 条边的网络")
     
     # 计算网络指标
     pagerank = nx.pagerank(G, alpha=0.85)
     degree_centrality = nx.degree_centrality(G)
     betweenness_centrality = nx.betweenness_centrality(G)
     
-    print(f"   ✅ 计算了 PageRank, 度中心性, 介数中心性")
+    print(f"    计算了 PageRank, 度中心性, 介数中心性")
     
     # 准备节点数据
     node_data = []
@@ -102,7 +101,7 @@ def generate_for_viz_data():
     node_df['is_core_developer'] = node_df['pagerank_score'] >= pagerank_threshold
     
     # 处理浮点数字段，仅对异常浮点数保留两位小数
-    print(f"   ✅ 处理浮点数字段，仅对异常浮点数保留两位小数...")
+    print(f"    处理浮点数字段，仅对异常浮点数保留两位小数...")
     float_columns = [
         'pagerank_score', 'degree_centrality', 'betweenness_centrality',
         'pagerank_score_percentile', 'degree_centrality_percentile', 
@@ -130,8 +129,8 @@ def generate_for_viz_data():
     # 保存节点数据到viz文件夹
     node_output_path = os.path.join(viz_dir, 'for_viz_nodes.csv')
     node_df.to_csv(node_output_path, index=False, encoding='utf-8')
-    print(f"   ✅ 节点数据已保存到: {node_output_path}")
-    print(f"   ✅ 数据行数: {len(node_df)}")
+    print(f"    节点数据已保存到: {node_output_path}")
+    print(f"    数据行数: {len(node_df)}")
     
     # 3. 生成趋势数据 (for_viz_trends.csv)
     print("\n3. 生成趋势数据 (for_viz_trends.csv)...")
@@ -139,7 +138,7 @@ def generate_for_viz_data():
     # 调用现有的generate_for_viz_trends.py脚本
     subprocess.run([sys.executable, os.path.join(project_path, 'src', 'generate_for_viz_trends.py')], 
                    cwd=project_path, check=True)
-    print(f"   ✅ 趋势数据已保存到: {os.path.join(viz_dir, 'for_viz_trends.csv')}")
+    print(f"    趋势数据已保存到: {os.path.join(viz_dir, 'for_viz_trends.csv')}")
     
     # 4. 生成社区数据 (for_viz_communities.csv)
     print("\n4. 生成社区数据 (for_viz_communities.csv)...")
@@ -147,8 +146,8 @@ def generate_for_viz_data():
     # 保存社区数据到viz文件夹
     community_output_path = os.path.join(viz_dir, 'for_viz_communities.csv')
     community_df.to_csv(community_output_path, index=False, encoding='utf-8')
-    print(f"   ✅ 社区数据已保存到: {community_output_path}")
-    print(f"   ✅ 数据行数: {len(community_df)}")
+    print(f"    社区数据已保存到: {community_output_path}")
+    print(f"    数据行数: {len(community_df)}")
     
     # 5. 生成核心开发者数据 (for_viz_core_developers.csv)
     print("\n5. 生成核心开发者数据 (for_viz_core_developers.csv)...")
@@ -165,8 +164,8 @@ def generate_for_viz_data():
     # 保存核心开发者数据到viz文件夹
     core_output_path = os.path.join(viz_dir, 'for_viz_core_developers.csv')
     core_developers_summary.to_csv(core_output_path, index=False, encoding='utf-8')
-    print(f"   ✅ 核心开发者数据已保存到: {core_output_path}")
-    print(f"   ✅ 数据行数: {len(core_developers_summary)}")
+    print(f"    核心开发者数据已保存到: {core_output_path}")
+    print(f"    数据行数: {len(core_developers_summary)}")
     
     # 6. 显示生成的文件
     print("\n" + "=" * 60)
@@ -180,19 +179,19 @@ def generate_for_viz_data():
         if os.path.exists(file_path):
             file_size = os.path.getsize(file_path) / 1024  # KB
             df = pd.read_csv(file_path)
-            print(f"✅ {file_name}")
+            print(f" {file_name}")
             print(f"   路径: {file_path}")
             print(f"   行数: {len(df)}")
             print(f"   大小: {file_size:.2f} KB")
             print(f"   列名: {list(df.columns)}")
             print()
         else:
-            print(f"❌ {file_name} - 生成失败")
+            print(f" {file_name} - 生成失败")
             print()
     
     print("=" * 60)
-    print("✅ 所有数据文件生成完成！")
-    print("✅ 数据已保存到 viz 文件夹")
+    print(" 所有数据文件生成完成！")
+    print(" 数据已保存到 viz 文件夹")
     print("=" * 60)
     
     return node_df, monthly_df, community_df, core_developers_summary

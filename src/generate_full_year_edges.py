@@ -22,8 +22,8 @@ def generate_full_year_edges():
     developers_df = pd.read_csv(os.path.join(project_path, 'data', 'developers.csv'))
     collab_df = pd.read_csv(os.path.join(project_path, 'data', 'collaborations_temporal.csv'))
     
-    print(f"   ✅ 开发者数据: {len(developers_df)} 位开发者")
-    print(f"   ✅ 协作记录: {len(collab_df)} 条时序记录")
+    print(f"    开发者数据: {len(developers_df)} 位开发者")
+    print(f"    协作记录: {len(collab_df)} 条时序记录")
     
     # 聚合整年的协作关系，计算每条边的总权重
     print("\n2. 聚合整年协作关系...")
@@ -50,9 +50,9 @@ def generate_full_year_edges():
     # 四舍五入处理权重，保留两位小数
     edge_data['weight'] = edge_data['weight'].round(2)
     
-    print(f"   ✅ 聚合后边数: {len(edge_data)} 条")
-    print(f"   ✅ 平均每条边权重: {edge_data['weight'].mean():.2f}")
-    print(f"   ✅ 最大边权重: {edge_data['weight'].max():.2f}")
+    print(f"    聚合后边数: {len(edge_data)} 条")
+    print(f"    平均每条边权重: {edge_data['weight'].mean():.2f}")
+    print(f"    最大边权重: {edge_data['weight'].max():.2f}")
     
     # 添加技术栈信息
     print("\n3. 添加技术栈信息...")
@@ -95,20 +95,20 @@ def generate_full_year_edges():
     output_path = os.path.join(viz_dir, 'for_viz_edges.csv')
     edge_data.to_csv(output_path, index=False, encoding='utf-8')
     
-    print(f"   ✅ 边数据已保存到: {output_path}")
-    print(f"   ✅ 数据行数: {len(edge_data)} 条")
-    print(f"   ✅ 数据列名: {list(edge_data.columns)}")
+    print(f"    边数据已保存到: {output_path}")
+    print(f"    数据行数: {len(edge_data)} 条")
+    print(f"    数据列名: {list(edge_data.columns)}")
     
     # 显示统计信息
     print("\n📊 数据统计:")
-    print(f"   • 总边数: {len(edge_data)}")
-    print(f"   • 相同技术栈协作: {(edge_data['tech_match_type'] == 'Same Tech').sum()} 条")
-    print(f"   • 跨技术栈协作: {(edge_data['tech_match_type'] == 'Cross-Tech').sum()} 条")
-    print(f"   • 协作强度分布:")
+    print(f"   总边数: {len(edge_data)}")
+    print(f"   相同技术栈协作: {(edge_data['tech_match_type'] == 'Same Tech').sum()} 条")
+    print(f"   跨技术栈协作: {(edge_data['tech_match_type'] == 'Cross-Tech').sum()} 条")
+    print(f"   协作强度分布:")
     print(edge_data['strength_level'].value_counts().to_string())
     
     print("\n" + "=" * 60)
-    print("✅ 完整年度边数据生成完成!")
+    print(" 完整年度边数据生成完成!")
     print("=" * 60)
     
     return edge_data

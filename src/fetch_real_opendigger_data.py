@@ -80,7 +80,7 @@ def fetch_real_opendigger_data():
                         
                 if len(developers) > 0:
                     developers_df = pd.DataFrame(developers)
-                    print(f"   ✅ 成功获取 {len(developers_df)} 位真实开发者数据")
+                    print(f"    成功获取 {len(developers_df)} 位真实开发者数据")
                     print(f"   示例用户名: {developers_df['name'].iloc[0]}, {developers_df['name'].iloc[1]}, {developers_df['name'].iloc[2]}")
                 else:
                     raise Exception("没有获取到有效的贡献者数据")
@@ -90,7 +90,7 @@ def fetch_real_opendigger_data():
             raise Exception(f"GitHub API请求失败，状态码: {response.status_code}, 响应: {response.text}")
         
     except Exception as e:
-        print(f"   ⚠️  从OpenDigger获取数据失败: {e}")
+        print(f"     从OpenDigger获取数据失败: {e}")
         print("   使用模拟数据生成开发者信息...")
         
         # 生成开发者数据（模拟真实数据结构）
@@ -184,7 +184,7 @@ def fetch_real_opendigger_data():
         
         # 如果没有获取到足够的数据，生成一些补充数据
         if len(all_edges) < 500:
-            print("   ⚠️  从GitHub API获取的协作数据不足，生成补充数据...")
+            print("     从GitHub API获取的协作数据不足，生成补充数据...")
             
             # 生成补充的协作数据
             for month_offset in range(months-1, -1, -1):
@@ -231,10 +231,10 @@ def fetch_real_opendigger_data():
                     all_edges.append(edge)
         
         edges_df = pd.DataFrame(all_edges)
-        print(f"   ✅ 成功生成 {len(edges_df)} 条协作记录")
+        print(f"    成功生成 {len(edges_df)} 条协作记录")
         
     except Exception as e:
-        print(f"   ⚠️  从OpenDigger获取协作数据失败: {e}")
+        print(f"     从OpenDigger获取协作数据失败: {e}")
         print("   使用模拟数据生成协作关系...")
         
         # 生成协作数据（模拟真实数据结构）
@@ -325,36 +325,36 @@ def fetch_real_opendigger_data():
     # 开发者信息
     developers_csv_path = os.path.join(data_dir, 'developers.csv')
     developers_df.to_csv(developers_csv_path, index=False)
-    print(f"   ✅ developers.csv: {len(developers_df)} 位开发者")
-    print(f"   ✅ 保存路径: {developers_csv_path}")
+    print(f"    developers.csv: {len(developers_df)} 位开发者")
+    print(f"    保存路径: {developers_csv_path}")
     
     # 验证保存是否成功
     if os.path.exists(developers_csv_path):
         saved_df = pd.read_csv(developers_csv_path)
-        print(f"   ✅ 验证成功: 保存了 {len(saved_df)} 条记录")
-        print(f"   ✅ 保存的前3行: {saved_df.head(3).to_dict('records')}")
+        print(f"    验证成功: 保存了 {len(saved_df)} 条记录")
+        print(f"    保存的前3行: {saved_df.head(3).to_dict('records')}")
     else:
-        print(f"   ❌ 验证失败: 文件未保存成功")
+        print(f"    验证失败: 文件未保存成功")
     
     # 详细协作关系（时序）
     collaborations_csv_path = os.path.join(data_dir, 'collaborations_temporal.csv')
     edges_df.to_csv(collaborations_csv_path, index=False)
-    print(f"   ✅ collaborations_temporal.csv: {len(edges_df)} 条协作记录")
-    print(f"   ✅ 保存路径: {collaborations_csv_path}")
+    print(f"    collaborations_temporal.csv: {len(edges_df)} 条协作记录")
+    print(f"    保存路径: {collaborations_csv_path}")
     
     # 月度聚合指标
     monthly_csv_path = os.path.join(data_dir, 'monthly_metrics.csv')
     monthly_df.to_csv(monthly_csv_path, index=False)
-    print(f"   ✅ monthly_metrics.csv: {len(monthly_df)} 个月度指标")
-    print(f"   ✅ 保存路径: {monthly_csv_path}")
+    print(f"    monthly_metrics.csv: {len(monthly_df)} 个月度指标")
+    print(f"    保存路径: {monthly_csv_path}")
     
     # 最新一个月的数据快照（用于网络图）
     latest_month = edges_df['year_month'].max()
     latest_edges = edges_df[edges_df['year_month'] == latest_month]
     latest_csv_path = os.path.join(data_dir, 'latest_network.csv')
     latest_edges[['source', 'target', 'weight']].to_csv(latest_csv_path, index=False)
-    print(f"   ✅ latest_network.csv: {latest_month} 月网络快照，{len(latest_edges)} 条边")
-    print(f"   ✅ 保存路径: {latest_csv_path}")
+    print(f"    latest_network.csv: {latest_month} 月网络快照，{len(latest_edges)} 条边")
+    print(f"    保存路径: {latest_csv_path}")
     
     print("\n" + "=" * 60)
     print("数据获取完成！")
@@ -384,9 +384,9 @@ if __name__ == "__main__":
     
     # 显示数据摘要
     print("\n📊 数据摘要:")
-    print(f"• 时间范围: {edges_df['year_month'].min()} 到 {edges_df['year_month'].max()}")
-    print(f"• 总协作事件: {len(edges_df):,} 次")
-    print(f"• 活跃开发者: {len(dev_df)} 人")
-    print(f"• 技术栈分布:")
+    print(f"   时间范围: {edges_df['year_month'].min()} 到 {edges_df['year_month'].max()}")
+    print(f"   总协作事件: {len(edges_df):,} 次")
+    print(f"   活跃开发者: {len(dev_df)} 人")
+    print(f"   技术栈分布:")
     print(dev_df['primary_tech'].value_counts().to_string())
-    print("\n✅ 数据已成功生成！")
+    print("\n 数据已成功生成！")

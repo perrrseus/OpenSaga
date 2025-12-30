@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""
-生成包含完整网络级指标的社区演化数据
-包括：每月网络密度、平均聚类系数、连通分量数
-"""
+# 生成社区演化数据，包含网络级指标
 
 import pandas as pd
 import networkx as nx
@@ -10,48 +7,42 @@ import os
 import sys
 
 def generate_community_evolution():
-    """
-    生成包含完整网络级指标的社区演化数据
-    """
+    """生成社区演化数据"""
     print("=" * 60)
-    print("生成包含完整网络级指标的社区演化数据")
+    print("生成社区演化数据")
     print("=" * 60)
     
     # 获取项目根目录
-    project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # 定义文件路径
-    collab_path = os.path.join(project_path, 'data', 'collaborations_temporal.csv')
+collab_path = os.path.join(project_path, 'data', 'collaborations_temporal.csv')
     developers_path = os.path.join(project_path, 'data', 'developers.csv')
     output_dir = os.path.join(project_path, 'data')
     
-    # 确保输出目录存在
     os.makedirs(output_dir, exist_ok=True)
     
-    # 加载数据
     print("1. 加载数据...")
     try:
         collab_df = pd.read_csv(collab_path)
         developers_df = pd.read_csv(developers_path)
-        print(f"   ✅ 协作数据：{len(collab_df)} 条记录")
-        print(f"   ✅ 开发者数据：{len(developers_df)} 条记录")
+        print(f"   协作数据：{len(collab_df)} 条记录")
+        print(f"   开发者数据：{len(developers_df)} 条记录")
     except Exception as e:
-        print(f"❌ 加载数据失败：{e}")
+        print(f"加载数据失败：{e}")
         sys.exit(1)
     
-    # 检查是否安装了python-louvain
     print("\n2. 检查依赖...")
     try:
         import community as community_louvain
         use_louvain = True
-        print("   ✅ 使用Louvain算法进行社区检测")
+        print("   使用Louvain算法进行社区检测")
     except ImportError:
         use_louvain = False
-        print("⚠️ 未安装python-louvain，使用连通组件作为社区")
-        print("   安装命令: pip install python-louvain")
+        print("未安装python-louvain，使用连通组件作为社区")
     
-    # 初始化结果列表
-    community_evolution = []
+    # 初始化结果
+community_evolution = []
     monthly_summary = []
     
     # 按月份分组（按时间排序）
@@ -183,28 +174,27 @@ def generate_community_evolution():
         community_evolution_df = pd.DataFrame(community_evolution)
         monthly_summary_df = pd.DataFrame(monthly_summary)
         
-        print(f"✅ 社区演化分析完成:")
-        print(f"   • 覆盖 {len(monthly_summary_df)} 个月份")
-        print(f"   • 总记录数: {len(community_evolution_df)} 条")
-        print(f"   • 平均每月社区数: {monthly_summary_df['num_communities'].mean():.1f}")
+        print(f"社区演化分析完成:")
+        print(f"   覆盖 {len(monthly_summary_df)} 个月份")
+        print(f"   总记录数: {len(community_evolution_df)} 条")
+        print(f"   平均每月社区数: {monthly_summary_df['num_communities'].mean():.1f}")
         
-        # 保存数据到data文件夹
+        # 保存数据
         community_evolution_df.to_csv(os.path.join(output_dir, 'community_evolution_detail.csv'), index=False, encoding='utf-8')
         monthly_summary_df.to_csv(os.path.join(output_dir, 'community_evolution_monthly.csv'), index=False, encoding='utf-8')
         
-        # 同时保存社区演化月度数据到viz文件夹
+        # 保存用于可视化的数据
         viz_dir = os.path.join(project_path, 'viz')
         os.makedirs(viz_dir, exist_ok=True)
         viz_monthly_path = os.path.join(viz_dir, 'for_viz_community_monthly.csv')
         monthly_summary_df.to_csv(viz_monthly_path, index=False, encoding='utf-8')
         
-        print(f"\n✅ 数据已保存:")
-        print(f"   • data/community_evolution_detail.csv")
-        print(f"   • data/community_evolution_monthly.csv (包含完整网络级指标)")
-        print(f"   • viz/for_viz_community_monthly.csv (用于可视化的社区演化月度数据)")
+        print(f"\n数据已保存:")
+        print(f"   data/community_evolution_detail.csv")
+        print(f"   data/community_evolution_monthly.csv")
+        print(f"   viz/for_viz_community_monthly.csv")
         
-        # 显示演化趋势
-        print("\n📈 社区演化趋势摘要:")
+        print("\n社区演化趋势摘要:")
         print(monthly_summary_df[[
             'year_month', 'num_communities', 'avg_community_size', 'num_active_developers',
             'network_density', 'avg_clustering_coefficient', 'num_connected_components'
@@ -212,7 +202,7 @@ def generate_community_evolution():
         
         return monthly_summary_df
     else:
-        print("❌ 未生成有效的社区演化数据")
+        print("未生成有效的社区演化数据")
         return None
 
 if __name__ == "__main__":

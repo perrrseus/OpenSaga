@@ -123,21 +123,21 @@ def generate_temporal_network_data(months=12, num_developers=50):
     
     # 开发者信息
     developers_df.to_csv('../data/developers.csv', index=False)
-    print(f"   ✅ developers.csv: {len(developers_df)} 位开发者")
+    print(f"    developers.csv: {len(developers_df)} 位开发者")
     
     # 详细协作关系（时序）
     edges_df.to_csv('../data/collaborations_temporal.csv', index=False)
-    print(f"   ✅ collaborations_temporal.csv: {len(edges_df)} 条协作记录")
+    print(f"    collaborations_temporal.csv: {len(edges_df)} 条协作记录")
     
     # 月度聚合指标
     monthly_df.to_csv('../data/monthly_metrics.csv', index=False)
-    print(f"   ✅ monthly_metrics.csv: {len(monthly_df)} 个月度指标")
+    print(f"    monthly_metrics.csv: {len(monthly_df)} 个月度指标")
     
     # 最新一个月的数据快照（用于网络图）
     latest_month = edges_df['year_month'].max()
     latest_edges = edges_df[edges_df['year_month'] == latest_month]
     latest_edges[['source', 'target', 'weight']].to_csv('../data/latest_network.csv', index=False)
-    print(f"   ✅ latest_network.csv: {latest_month} 月网络快照，{len(latest_edges)} 条边")
+    print(f"    latest_network.csv: {latest_month} 月网络快照，{len(latest_edges)} 条边")
     
     print("\n" + "=" * 60)
     print("数据生成完成！")
@@ -157,8 +157,8 @@ if __name__ == "__main__":
     
     # 显示数据摘要
     print("\n📊 数据摘要:")
-    print(f"• 时间范围: {edges_df['year_month'].min()} 到 {edges_df['year_month'].max()}")
-    print(f"• 总协作事件: {len(edges_df):,} 次")
-    print(f"• 活跃开发者: {len(dev_df)} 人")
-    print(f"• 技术栈分布:")
+    print(f"   时间范围: {edges_df['year_month'].min()} 到 {edges_df['year_month'].max()}")
+    print(f"   总协作事件: {len(edges_df):,} 次")
+    print(f"   活跃开发者: {len(dev_df)} 人")
+    print(f"   技术栈分布:")
     print(dev_df['primary_tech'].value_counts().to_string())

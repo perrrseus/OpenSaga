@@ -26,13 +26,12 @@ def generate_time_evolution_visualizations():
     print("=" * 60)
     
     # 获取项目根目录
-    project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # 定义文件路径
-    data_dir = os.path.join(project_path, 'data')
+data_dir = os.path.join(project_path, 'data')
     graph_dir = os.path.join(project_path, 'graph')
     
-    # 确保输出目录存在
     os.makedirs(graph_dir, exist_ok=True)
     
     # 1. 加载数据
@@ -44,10 +43,10 @@ def generate_time_evolution_visualizations():
         # 加载社区演化月度数据
         community_monthly_df = pd.read_csv(os.path.join(data_dir, 'community_evolution_monthly.csv'))
         
-        print(f"   ✅ 月度指标数据: {len(monthly_df)} 个月份")
-        print(f"   ✅ 社区演化月度数据: {len(community_monthly_df)} 个月份")
+        print(f"    月度指标数据: {len(monthly_df)} 个月份")
+        print(f"    社区演化月度数据: {len(community_monthly_df)} 个月份")
     except Exception as e:
-        print(f"   ❌ 加载数据失败: {e}")
+        print(f"    加载数据失败: {e}")
         return None
     
     # 2. 生成月度活跃开发者趋势图
@@ -71,9 +70,9 @@ def generate_time_evolution_visualizations():
     generate_analysis_file(graph_dir)
     
     print("\n" + "=" * 60)
-    print("✅ 所有时间演化可视化图生成完成！")
-    print(f"✅ 图像已保存到: {graph_dir}")
-    print("✅ 分析文件已保存到: {os.path.join(graph_dir, 'time_evolution_analysis.md')}")
+    print(" 所有时间演化可视化图生成完成！")
+    print(f" 图像已保存到: {graph_dir}")
+    print(" 分析文件已保存到: {os.path.join(graph_dir, 'time_evolution_analysis.md')}")
     print("=" * 60)
 
 def generate_active_developers_trend(monthly_df, output_dir):
@@ -109,7 +108,7 @@ def generate_active_developers_trend(monthly_df, output_dir):
     plt.savefig(output_path, dpi=150, bbox_inches='tight', transparent=False, facecolor='white')
     plt.close()
     
-    print(f"   ✅ 已保存: {output_path}")
+    print(f"    已保存: {output_path}")
 
 def generate_collaboration_trend(monthly_df, output_dir):
     """
@@ -155,7 +154,7 @@ def generate_collaboration_trend(monthly_df, output_dir):
     plt.savefig(output_path, dpi=150, bbox_inches='tight', transparent=False, facecolor='white')
     plt.close()
     
-    print(f"   ✅ 已保存: {output_path}")
+    print(f"    已保存: {output_path}")
 
 def generate_community_evolution(community_monthly_df, output_dir):
     """
@@ -201,7 +200,7 @@ def generate_community_evolution(community_monthly_df, output_dir):
     plt.savefig(output_path, dpi=150, bbox_inches='tight', transparent=False, facecolor='white')
     plt.close()
     
-    print(f"   ✅ 已保存: {output_path}")
+    print(f"    已保存: {output_path}")
 
 def generate_network_health_trend(community_monthly_df, output_dir):
     """
@@ -249,7 +248,7 @@ def generate_network_health_trend(community_monthly_df, output_dir):
     plt.savefig(output_path, dpi=150, bbox_inches='tight', transparent=False, facecolor='white')
     plt.close()
     
-    print(f"   ✅ 已保存: {output_path}")
+    print(f"    已保存: {output_path}")
 
 def generate_analysis_file(output_dir):
     """
@@ -397,7 +396,7 @@ def generate_analysis_file(output_dir):
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(analysis_content)
     
-    print(f"   ✅ 已保存: {output_path}")
+    print(f"    已保存: {output_path}")
 
 if __name__ == "__main__":
     generate_time_evolution_visualizations()

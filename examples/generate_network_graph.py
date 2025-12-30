@@ -102,10 +102,10 @@ def create_network_graph():
     
     plt.title('开源协作网络关系图 (力导向布局)', fontsize=18, fontweight='bold', pad=20)
     plt.text(0.02, 0.02,
-            f'• 节点大小 ≈ PageRank影响力\\n'
-            f'• 边粗细 ≈ 协作强度\\n'
-            f'• 共 {len(G.nodes())} 位开发者, {len(G.edges())} 条协作关系\\n'
-            f'• 生成时间: {datetime.now().strftime("%Y-%m-%d %H:%M")}',
+            f'   节点大小 ≈ PageRank影响力\\n'
+            f'   边粗细 ≈ 协作强度\\n'
+            f'   共 {len(G.nodes())} 位开发者, {len(G.edges())} 条协作关系\\n'
+            f'   生成时间: {datetime.now().strftime("%Y-%m-%d %H:%M")}',
             transform=plt.gca().transAxes,
             fontsize=10,
             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.8))
@@ -117,7 +117,7 @@ def create_network_graph():
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.close()
     
-    print(f"✅ 网络图已保存至: {output_path}")
+    print(f" 网络图已保存至: {output_path}")
     print(f"   文件大小: {os.path.getsize(output_path) / 1024:.1f} KB")
     
     plt.figure(figsize=(8, 6))
@@ -128,7 +128,7 @@ def create_network_graph():
     plt.savefig('../data/network_graph_small.png', dpi=150, bbox_inches='tight')
     plt.close()
     
-    print(f"✅ 缩略图已保存至: ../data/network_graph_small.png")
+    print(f" 缩略图已保存至: ../data/network_graph_small.png")
     
     return output_path
 
@@ -152,7 +152,7 @@ def create_network_metrics_table():
     
     metrics_df = pd.DataFrame(metrics)
     metrics_df.to_csv('../data/network_metrics.csv', index=False, encoding='utf-8-sig')
-    print(f"✅ 网络指标已保存至: ../data/network_metrics.csv")
+    print(f" 网络指标已保存至: ../data/network_metrics.csv")
     
     return metrics_df
 
