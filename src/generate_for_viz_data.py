@@ -101,17 +101,31 @@ def generate_for_viz_data():
     pagerank_threshold = node_df['pagerank_score'].quantile(0.8)
     node_df['is_core_developer'] = node_df['pagerank_score'] >= pagerank_threshold
     
-    # 处理浮点数字段，保留两位小数
-    print(f"   ✅ 处理浮点数字段，保留两位小数...")
+    # 处理浮点数字段，仅对异常浮点数保留两位小数
+    print(f"   ✅ 处理浮点数字段，仅对异常浮点数保留两位小数...")
     float_columns = [
         'pagerank_score', 'degree_centrality', 'betweenness_centrality',
         'pagerank_score_percentile', 'degree_centrality_percentile', 
         'betweenness_centrality_percentile', 'activity_level_percentile'
     ]
     
-    # 对每个浮点数字段进行四舍五入处理
+    # 自定义函数：仅对异常浮点数保留两位小数
+    def fix_abnormal_floats(x):
+        # 检查x是否为浮点数
+        if isinstance(x, float):
+            # 计算四舍五入到两位小数的值
+            rounded = round(x, 2)
+            # 检查原始值与四舍五入后的值之差是否小于一个极小值（1e-9）
+            # 这个极小值用于判断是否是浮点数精度问题导致的异常值
+            if abs(x - rounded) < 1e-9:
+                # 是异常浮点数，返回两位小数
+                return rounded
+        # 正常数值保持原样
+        return x
+    
+    # 对每个浮点数字段应用自定义处理
     for col in float_columns:
-        node_df[col] = node_df[col].round(2)
+        node_df[col] = node_df[col].apply(fix_abnormal_floats)
     
     # 保存节点数据到viz文件夹
     node_output_path = os.path.join(viz_dir, 'for_viz_nodes.csv')
