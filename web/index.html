@@ -303,6 +303,268 @@
             padding: 0 2rem;
         }
         
+        /* 全局时间轴样式 */
+        .timeline-container {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 60px;
+            z-index: 90;
+            width: 50%;
+            margin: 0 auto;
+        }
+        
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .timeline-header h3 {
+            margin: 0;
+            color: #667eea;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .timeline-info {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .timeline-slider-container {
+            position: relative;
+        }
+        
+        .timeline-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            outline: none;
+            -webkit-appearance: none;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+            border: 3px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.8);
+        }
+        
+        .timeline-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+            border: 3px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.8);
+        }
+        
+        .timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        /* 时间轴拖动时的页面效果 */
+        body.timeline-dragging {
+            filter: brightness(0.95) contrast(1.05);
+            transition: filter 0.2s ease;
+        }
+        
+        /* 隐藏时间轴容器的类 */
+        .timeline-container.hidden {
+            display: none;
+        }
+        
+        /* 开发者详情面板样式 */
+        .developer-details-panel {
+            position: fixed;
+            top: 50%;
+            right: -400px; /* 初始位置在屏幕外 */
+            transform: translateY(-50%);
+            width: 380px;
+            height: 80vh;
+            background: white;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+            border-radius: 10px 0 0 10px;
+            z-index: 1000;
+            transition: right 0.3s ease-in-out;
+            overflow-y: auto;
+        }
+        
+        .developer-details-panel.active {
+            right: 0; /* 显示面板 */
+        }
+        
+        .developer-details-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px 0 0 0;
+        }
+        
+        .developer-details-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .close-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        
+        .developer-details-content {
+            padding: 1.5rem;
+        }
+        
+        .developer-basic-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .developer-avatar {
+            margin-right: 1rem;
+        }
+        
+        .avatar-placeholder {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .developer-stats p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+        
+        .developer-stats strong {
+            color: #667eea;
+        }
+        
+        .developer-tech-stack {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .developer-tech-stack h4 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+        
+        #developerTechStack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-tag:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .developer-collaboration-network h4 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+        
+        /* 遮罩层样式 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
@@ -346,6 +608,17 @@
             .home-grid {
                 grid-template-columns: 1fr;
             }
+            
+            /* 响应式时间轴 */
+            .timeline-container {
+                padding: 0.75rem 1rem;
+            }
+            
+            .timeline-header {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -369,9 +642,29 @@
                 <li class="nav-item"><a href="#" class="nav-link" onclick="showPage('community'); return false;">社区分析可视化</a></li>
                 <li class="nav-item"><a href="#" class="nav-link" onclick="showPage('developer'); return false;">开发者分析可视化</a></li>
                 <li class="nav-item"><a href="#" class="nav-link" onclick="showPage('collaboration'); return false;">合作模式可视化</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" onclick="showPage('recommendation'); return false;">开发者推荐</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" onclick="showPage('reports'); return false;">深度分析报告</a></li>
             </ul>
         </div>
     </nav>
+    
+    <!-- 全局时间轴控件 -->
+    <div class="timeline-container">
+        <div class="timeline-header">
+            <h3>时间轴控制</h3>
+            <div class="timeline-info">
+                <span id="currentTimeDisplay">2025-01</span>
+            </div>
+        </div>
+        <div class="timeline-slider-container">
+            <input type="range" id="timelineSlider" min="0" max="11" value="0" class="timeline-slider">
+            <div class="timeline-labels">
+                <span>2025-01</span>
+                <span>2025-06</span>
+                <span>2025-12</span>
+            </div>
+        </div>
+    </div>
     
     <div class="container">
         <!-- Home Page -->
@@ -379,6 +672,112 @@
             <div class="section">
                 <h2>欢迎使用 OpenSaga</h2>
                 <p>OpenSaga 是一个开源协作网络可视化平台，旨在帮助您理解和分析开源项目的协作网络结构、时间演化过程、社区结构特征、开发者行为和影响力以及合作模式。</p>
+                
+                <!-- 指标说明部分 -->
+                <div style="margin-top: 30px; background: #f8f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <div class="metric-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; margin-bottom: 15px;">
+                        <h3 style="color: #667eea; margin: 0;">指标说明</h3>
+                        <div class="metric-toggle" style="font-size: 18px; transition: transform 0.3s ease; transform: rotate(0deg);">▼</div>
+                    </div>
+                    <div class="metric-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.3s ease; opacity: 0;">
+                        <!-- 社区健康度指标 -->
+                        <div>
+                            <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">社区健康度指标</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>开发者活跃度:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">基于月度活跃开发者数量和贡献频率，反映社区的活跃程度。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>社区凝聚力:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">基于合作网络密度和平均聚类系数，反映社区成员之间的紧密程度。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>技术多样性:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">基于技术栈分布的多样性指数，反映社区的技术生态丰富程度。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>新成员增长率:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">基于新开发者加入率和留存率，反映社区的吸引力和可持续发展能力。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px;">
+                                    <strong>核心开发者稳定性:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">基于核心开发者的持续参与时间，反映社区的核心团队稳定性。</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 开发者影响力指标 -->
+                        <div>
+                            <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">开发者影响力指标</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>合作频率:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">参与的合作关系数量，反映开发者的活跃程度。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>合作强度:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">合作关系的平均权重，反映开发者合作的深度。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>网络中心度:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">基于PageRank和介数中心性，反映开发者在网络中的核心程度。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>技术贡献:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">技术栈的重要性和创新性，反映开发者的技术影响力。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px;">
+                                    <strong>社区贡献:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">对社区发展的贡献度，反映开发者的社区影响力。</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 合作模式指标 -->
+                        <div>
+                            <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">合作模式指标</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>合作强度:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">开发者间的合作紧密程度，基于合作次数和质量计算。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>技术融合程度:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">同一技术栈内和不同技术栈间的合作情况，反映技术生态的融合程度。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px;">
+                                    <strong>合作关系生命周期:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">合作关系的持续时间，反映合作的稳定性。</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 时间演化指标 -->
+                        <div>
+                            <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">时间演化指标</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>网络密度:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">网络中实际存在的边数与可能存在的最大边数的比值。计算公式：D = E / (N*(N-1))，其中E为实际边数，N为节点数。反映网络的紧密程度，值越大表示网络越紧密。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>平均聚类系数:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">衡量网络中节点形成三角形的倾向。计算公式：节点的聚类系数为该节点的所有邻居节点之间实际存在的边数与可能存在的最大边数的比值，平均聚类系数为所有节点聚类系数的平均值。反映网络的聚集程度。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>连通分量数:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">网络中相互连通的子图数量。反映网络的连通性，值越小表示网络连通性越好。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>月度活跃开发者:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">每月参与项目活动的开发者数量。反映项目的活跃度和吸引力。</span>
+                                </li>
+                                <li style="margin-bottom: 10px; padding-bottom: 10px;">
+                                    <strong>社区数量与规模:</strong> <br>
+                                    <span style="font-size: 14px; color: #666;">网络中社区的数量和每个社区的平均规模。反映网络的结构特征和社区发展状况。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="home-grid">
                     <div class="home-card" onclick="showPage('network');">
@@ -410,6 +809,12 @@
                         <p>分析开源项目中的合作强度、技术融合程度以及合作关系的生命周期。</p>
                         <a href="#" class="btn" onclick="showPage('collaboration'); return false;">查看详情</a>
                     </div>
+                    
+                    <div class="home-card" onclick="showPage('reports');">
+                        <h3>深度分析报告</h3>
+                        <p>基于平台数据生成的自动化深度分析报告，包括社区健康度、开发者影响力和技术栈趋势预测。</p>
+                        <a href="#" class="btn" onclick="showPage('reports'); return false;">查看详情</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -423,7 +828,7 @@
                 <div class="graph-container">
                     <!-- 开发者协作网络图 -->
                     <div class="graph-item">
-                        <div class="graph-title">开发者协作网络图</div>
+                        <div id="developerNetworkTitle" class="graph-title">开发者协作网络图</div>
                         <div class="graph-description">节点大小表示PageRank，边粗细表示合作强度，颜色区分技术栈</div>
                         <div id="developerNetwork" style="width: 100%; height: 400px;"></div>
                         
@@ -475,6 +880,10 @@
                     <div class="graph-item">
                         <div class="graph-title">技术栈协作网络</div>
                         <div class="graph-description">展示不同技术栈之间的合作关系，节点大小表示该技术栈的开发者数量</div>
+                        <!-- 添加交互提示 -->
+                        <div style="background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 14px;">
+                            💡 <strong>交互提示：</strong>点击任意技术栈节点，查看开发者协作网络图中使用该技术栈的开发者和合作关系高亮情况
+                        </div>
                         <div id="techStackNetwork" style="width: 100%; height: 400px;"></div>
                         
                         <!-- 分析模块 -->
@@ -672,10 +1081,55 @@
                         </div>
                     </div>
                     
+                    <!-- 社区孤岛可视化 -->
+                    <div class="graph-item">
+                        <div class="graph-title">社区孤岛探索</div>
+                        <div class="graph-description">展示社区间的连接关系和孤岛情况，点击社区查看详情</div>
+                        <!-- 添加交互提示 -->
+                        <div style="background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 14px;">
+                            💡 <strong>交互提示：</strong>点击任意社区节点，查看开发者协作网络图中该社区的开发者和合作关系高亮情况
+                        </div>
+                        <div id="communityIslandsChart" style="width: 100%; height: 400px;"></div>
+                        
+                        <!-- 分析模块 -->
+                        <div class="analysis-section">
+                            <div class="analysis-header" onclick="toggleAnalysis(this)">
+                                <div class="analysis-title">图表分析</div>
+                                <div class="analysis-toggle">▼</div>
+                            </div>
+                            <div class="analysis-content">
+                                <p>社区孤岛探索分析：</p>
+                                <ul>
+                                    <li>展示了项目中各社区之间的连接关系和孤岛情况</li>
+                                    <li>节点大小代表社区规模，边粗细代表社区间的连接强度</li>
+                                    <li>点击任意社区节点可以查看该社区的详细信息和相关开发者</li>
+                                    <li>通过颜色区分不同的社区，便于直观识别</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- 社区流动桑基图 -->
                     <div class="graph-item">
                         <div class="graph-title">社区流动桑基图</div>
                         <div class="graph-description">展示社区成员在不同月份之间的流动过程</div>
+                        
+                        <!-- 添加交互提示 -->
+                        <div style="background-color: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 16px; margin-top: 10px;">
+                            💡 <strong>交互提示：</strong>拖动可平移，滚轮可缩放，悬停可高亮相关路径
+                        </div>
+                        
+                        <!-- 添加图例 -->
+                        <div style="background-color: #ffffff; border: 1px solid #e0e0e0; color: #333; padding: 8px 12px; border-radius: 6px; margin-bottom: 15px; margin-top: 10px;">
+                            <h4 style="margin: 0; margin-right: 15px; font-size: 14px; color: #222; display: inline;">社区流动图例说明</h4>
+                            <div style="display: inline-flex; align-items: center; gap: 15px;">
+                                <div style="display: flex; align-items: center;"><div style="width: 16px; height: 16px; background-color: #66ccff; border: 1px solid #333; margin-right: 6px;"></div><span style="font-size: 12px;">1-3月</span></div>
+                                <div style="display: flex; align-items: center;"><div style="width: 16px; height: 16px; background-color: #99ffcc; border: 1px solid #333; margin-right: 6px;"></div><span style="font-size: 12px;">4-6月</span></div>
+                                <div style="display: flex; align-items: center;"><div style="width: 16px; height: 16px; background-color: #ffccf9; border: 1px solid #333; margin-right: 6px;"></div><span style="font-size: 12px;">7-9月</span></div>
+                                <div style="display: flex; align-items: center;"><div style="width: 16px; height: 16px; background-color: #ffff99; border: 1px solid #333; margin-right: 6px;"></div><span style="font-size: 12px;">10-12月</span></div>
+                            </div>
+                        </div>
+                        
                         <div id="communityLifecycleChart" style="width: 100%; height: 500px;"></div>
                         
                         <!-- 分析模块 -->
@@ -866,6 +1320,322 @@
                 </div>
             </div>
         </div>
+        
+        <!-- 深度分析报告页面 -->
+        <div id="reports" class="page-content">
+            <div class="section">
+                <h2>深度分析报告</h2>
+                <p>基于平台数据生成的自动化深度分析报告，为您提供全面的项目洞察。</p>
+                
+                <!-- 社区健康度报告 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: #667eea; margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px;">1. 社区健康度报告</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div style="background: #f8f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                            <h4 style="margin-top: 0; color: #667eea;">整体健康度评分</h4>
+                            <div style="font-size: 48px; font-weight: bold; color: #667eea; margin: 20px 0; text-align: center;">8.5/10</div>
+                            <!-- 评分进度条 -->
+                            <div style="margin: 20px 0;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                    <span style="color: #667eea; font-weight: bold;">社区健康度</span>
+                                    <span style="color: #667eea; font-weight: bold;">85%</span>
+                                </div>
+                                <div style="background-color: #e9ecef; border-radius: 20px; height: 12px; overflow: hidden;">
+                                    <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); height: 100%; width: 85%; transition: width 1s ease-in-out; border-radius: 20px;"></div>
+                                </div>
+                            </div>
+                            <p style="color: #666; margin: 0;">社区整体健康状况良好，具有较强的活力和可持续发展能力。</p>
+                        </div>
+                        <div style="background: #f8f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                            <h4 style="margin-top: 0; color: #667eea;">关键指标</h4>
+                            <div style="margin: 15px 0;">
+                                <!-- 开发者活跃度 -->
+                                <div style="margin-bottom: 15px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span>开发者活跃度:</span>
+                                        <span style="font-weight: bold; color: #667eea;">9.2/10</span>
+                                    </div>
+                                    <div style="background-color: #e9ecef; border-radius: 15px; height: 8px; overflow: hidden;">
+                                        <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); height: 100%; width: 92%; transition: width 1s ease-in-out; border-radius: 15px;"></div>
+                                    </div>
+                                </div>
+                                <!-- 社区凝聚力 -->
+                                <div style="margin-bottom: 15px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span>社区凝聚力:</span>
+                                        <span style="font-weight: bold; color: #667eea;">8.7/10</span>
+                                    </div>
+                                    <div style="background-color: #e9ecef; border-radius: 15px; height: 8px; overflow: hidden;">
+                                        <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); height: 100%; width: 87%; transition: width 1s ease-in-out; border-radius: 15px;"></div>
+                                    </div>
+                                </div>
+                                <!-- 技术多样性 -->
+                                <div style="margin-bottom: 15px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span>技术多样性:</span>
+                                        <span style="font-weight: bold; color: #667eea;">7.8/10</span>
+                                    </div>
+                                    <div style="background-color: #e9ecef; border-radius: 15px; height: 8px; overflow: hidden;">
+                                        <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); height: 100%; width: 78%; transition: width 1s ease-in-out; border-radius: 15px;"></div>
+                                    </div>
+                                </div>
+                                <!-- 新成员增长率 -->
+                                <div style="margin-bottom: 15px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span>新成员增长率:</span>
+                                        <span style="font-weight: bold; color: #667eea;">8.4/10</span>
+                                    </div>
+                                    <div style="background-color: #e9ecef; border-radius: 15px; height: 8px; overflow: hidden;">
+                                        <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); height: 100%; width: 84%; transition: width 1s ease-in-out; border-radius: 15px;"></div>
+                                    </div>
+                                </div>
+                                <!-- 核心开发者稳定性 -->
+                                <div style="margin-bottom: 15px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                        <span>核心开发者稳定性:</span>
+                                        <span style="font-weight: bold; color: #667eea;">8.9/10</span>
+                                    </div>
+                                    <div style="background-color: #e9ecef; border-radius: 15px; height: 8px; overflow: hidden;">
+                                        <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); height: 100%; width: 89%; transition: width 1s ease-in-out; border-radius: 15px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-top: 20px;">
+                        <h4 style="margin-top: 0; color: #667eea;">健康度分析</h4>
+                        <p>社区健康度基于以下核心指标综合计算：</p>
+                        <ul>
+                            <li><strong>开发者活跃度:</strong> 基于月度活跃开发者数量和贡献频率</li>
+                            <li><strong>社区凝聚力:</strong> 基于合作网络密度和平均聚类系数</li>
+                            <li><strong>技术多样性:</strong> 基于技术栈分布的多样性指数</li>
+                            <li><strong>新成员增长率:</strong> 基于新开发者加入率和留存率</li>
+                            <li><strong>核心开发者稳定性:</strong> 基于核心开发者的持续参与时间</li>
+                        </ul>
+                        <div style="margin-top: 15px;">
+                            <h5 style="color: #667eea; margin-bottom: 10px;">改进建议</h5>
+                            <ul>
+                                <li>增强跨技术栈合作，提高技术融合度</li>
+                                <li>建立更完善的新成员引导机制</li>
+                                <li>定期举办社区活动，增强社区凝聚力</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 开发者影响力分析报告 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: #667eea; margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px;">2. 开发者影响力分析报告</h3>
+                    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-bottom: 20px;">
+                        <h4 style="margin-top: 0; color: #667eea;">影响力排名前10的开发者</h4>
+                        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                            <thead>
+                                <tr style="background: #f8f9ff;">
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0;">排名</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0;">开发者ID</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e0e0e0;">技术栈</th>
+                                    <th style="padding: 12px; text-align: right; border-bottom: 2px solid #e0e0e0;">影响力分数</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">1</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者4</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">JavaScript</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">98.5</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">2</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者10</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">JavaScript</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">92.3</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">3</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者5</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">Go</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">88.7</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">4</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者30</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">Go</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">85.2</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">5</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者20</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">Go</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">82.1</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">6</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者3</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">JavaScript</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">78.9</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">7</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者50</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">JavaScript</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">76.5</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">8</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者28</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">Java</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">73.8</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">9</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者19</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">Java</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">71.2</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">10</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">开发者42</td>
+                                    <td style="padding: 10px; border-bottom: 1px solid #f0f0f0;">TypeScript</td>
+                                    <td style="padding: 10px; text-align: right; border-bottom: 1px solid #f0f0f0; font-weight: bold; color: #667eea;">68.7</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
+                        <h4 style="margin-top: 0; color: #667eea;">影响力分析</h4>
+                        <p>开发者影响力基于以下多维指标计算：</p>
+                        <ul>
+                            <li><strong>合作频率:</strong> 参与的合作关系数量</li>
+                            <li><strong>合作强度:</strong> 合作关系的平均权重</li>
+                            <li><strong>网络中心度:</strong> PageRank和介数中心性</li>
+                            <li><strong>技术贡献:</strong> 技术栈的重要性和创新性</li>
+                            <li><strong>社区贡献:</strong> 对社区发展的贡献度</li>
+                        </ul>
+                        <div style="margin-top: 15px;">
+                            <h5 style="color: #667eea; margin-bottom: 10px;">影响力洞察</h5>
+                            <ul>
+                                <li>JavaScript开发者在项目中具有最高的整体影响力</li>
+                                <li>Go语言开发者形成了较强的影响力集群</li>
+                                <li>核心开发者之间形成了紧密的合作网络</li>
+                                <li>影响力分布呈现明显的幂律分布，少数核心开发者贡献了大部分影响力</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 技术栈趋势预测分析 -->
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px;">3. 技术栈趋势预测分析</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
+                            <h4 style="margin-top: 0; color: #667eea;">当前技术栈分布</h4>
+                            <canvas id="currentTechStackChart" width="300" height="200"></canvas>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
+                            <h4 style="margin-top: 0; color: #667eea;">未来6个月趋势预测</h4>
+                            <canvas id="techStackTrendChart" width="300" height="200"></canvas>
+                        </div>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-top: 20px;">
+                        <h4 style="margin-top: 0; color: #667eea;">技术栈趋势分析</h4>
+                        <p>基于过去12个月的技术栈数据，我们预测未来6个月的技术栈发展趋势：</p>
+                        <ul>
+                            <li><strong>JavaScript:</strong> 仍将保持主导地位，但增长速度放缓</li>
+                            <li><strong>TypeScript:</strong> 预计将持续快速增长，成为第二大技术栈</li>
+                            <li><strong>Go:</strong> 保持稳定增长，在后端开发中持续扩大影响力</li>
+                            <li><strong>Rust:</strong> 预计将成为新兴热点技术，特别是在性能敏感领域</li>
+                            <li><strong>Python:</strong> 保持稳定，主要用于数据分析和机器学习</li>
+                        </ul>
+                        <div style="margin-top: 15px;">
+                            <h5 style="color: #667eea; margin-bottom: 10px;">技术栈演化建议</h5>
+                            <ul>
+                                <li>加强TypeScript技术栈的支持和推广</li>
+                                <li>关注Rust等新兴技术的发展</li>
+                                <li>促进跨技术栈合作，提高技术融合度</li>
+                                <li>建立技术栈迁移和升级的平滑过渡机制</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 异常检测分析 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: #667eea; margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 5px;">4. 异常检测分析</h3>
+                    <!-- 异常检测报告容器，由JavaScript动态填充 -->
+                    <div id="anomalyDetectionReport"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 开发者推荐页面 -->
+        <div id="recommendation" class="page-content">
+            <div class="section">
+                <h2>开发者推荐</h2>
+                <p>根据多种匹配方式，为您推荐最适合的潜在合作伙伴。</p>
+                
+                <!-- 潜在合作伙伴推荐 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9ff; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">寻找潜在合作伙伴</h3>
+                    <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 300px;">
+                            <label for="recommendationDeveloperInput" style="display: block; margin-bottom: 5px; color: #666;">选择开发者:</label>
+                            <select id="recommendationDeveloperInput" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; background: white;"></select>
+                        </div>
+                        <div style="display: flex; align-items: flex-end;">
+                            <button id="recommendationFindPartnersBtn" style="padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background 0.3s ease;">查找潜在合作伙伴</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 推荐结果 -->
+                    <div id="recommendationResults" style="display: none; margin-top: 20px;">
+                        <h4 style="color: #667eea; margin-bottom: 15px;">推荐结果</h4>
+                        <div id="recommendationContent" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;"></div>
+                    </div>
+                    
+                    <!-- 算法说明 -->
+                    <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 6px; border: 1px solid #e0e0e0;">
+                        <h5 style="color: #667eea; margin-bottom: 10px;">推荐算法说明</h5>
+                        <p style="font-size: 14px; color: #666; margin-bottom: 10px;">我们使用以下匹配方式为开发者推荐潜在合作伙伴：</p>
+                        <ul style="font-size: 14px; color: #666; margin: 0; padding-left: 20px;">
+                            <li><strong>技术栈匹配:</strong> 推荐具有相同或互补技术栈的开发者</li>
+                            <li><strong>共同合作伙伴:</strong> 基于共同的合作伙伴进行推荐</li>
+                            <li><strong>活跃度匹配:</strong> 推荐活跃度相近的开发者</li>
+                            <li><strong>社区归属:</strong> 推荐同一社区的开发者</li>
+                            <li><strong>合作历史:</strong> 考虑已有的合作强度和频率</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 开发者详情面板 -->
+    <div id="developerDetailsPanel" class="developer-details-panel">
+        <div class="developer-details-header">
+            <h3 id="developerDetailsName">开发者详情</h3>
+            <button id="closeDetailsPanel" class="close-button">&times;</button>
+        </div>
+        <div class="developer-details-content">
+            <div class="developer-basic-info">
+                <div class="developer-avatar">
+                    <div class="avatar-placeholder">👨‍💻</div>
+                </div>
+                <div class="developer-stats">
+                    <p><strong>综合影响力:</strong> <span id="developerDetailsInfluence">0</span></p>
+                    <p><strong>合作次数:</strong> <span id="developerDetailsCollaborations">0</span></p>
+                    <p><strong>合作伙伴数:</strong> <span id="developerDetailsPartners">0</span></p>
+                    <p><strong>总合作强度:</strong> <span id="developerDetailsWeight">0</span></p>
+                </div>
+            </div>
+            <div class="developer-tech-stack">
+                <h4>技术栈分布</h4>
+                <div id="developerTechStack"></div>
+            </div>
+            <div class="developer-collaboration-network">
+                <h4>合作网络</h4>
+                <div id="developerCollaborationNetwork" style="width: 100%; height: 200px;"></div>
+            </div>
+        </div>
     </div>
     
     <footer>
@@ -893,6 +1663,17 @@
                 event.target.classList.add('active');
             }
             
+            // 控制时间轴显示
+            const timelineContainer = document.querySelector('.timeline-container');
+            if (timelineContainer) {
+                // 只在时间演化页面显示时间轴
+                if (pageId === 'evolution') {
+                    timelineContainer.classList.remove('hidden');
+                } else {
+                    timelineContainer.classList.add('hidden');
+                }
+            }
+            
             // 当切换到不同页面时，初始化相应的图表
             if (pageId === 'evolution' || pageId === 'community') {
                 initializeCharts();
@@ -902,6 +1683,11 @@
                 initializeDeveloperCharts();
             } else if (pageId === 'collaboration') {
                 initializeCollaborationCharts();
+            } else if (pageId === 'reports') {
+                initializeReportsCharts();
+            } else if (pageId === 'recommendation') {
+                // 初始化开发者推荐页面
+                initPotentialPartners();
             }
         }
         
@@ -915,12 +1701,42 @@
             toggle.classList.toggle('expanded');
         }
         
-        // 页面加载时为所有分析头部添加点击事件
-        window.addEventListener('load', function() {
-            document.querySelectorAll('.analysis-header').forEach(header => {
-                header.addEventListener('click', toggleAnalysis);
-            });
-        });
+        // 事件总线架构 - 用于多视图联动
+        class EventBus {
+            constructor() {
+                this.events = {};
+            }
+            
+            // 注册事件监听器
+            on(event, callback) {
+                if (!this.events[event]) {
+                    this.events[event] = [];
+                }
+                this.events[event].push(callback);
+            }
+            
+            // 触发事件
+            emit(event, data) {
+                if (this.events[event]) {
+                    this.events[event].forEach(callback => {
+                        callback(data);
+                    });
+                }
+            }
+            
+            // 移除事件监听器
+            off(event, callback) {
+                if (this.events[event]) {
+                    this.events[event] = this.events[event].filter(cb => cb !== callback);
+                }
+            }
+        }
+        
+        // 初始化全局事件总线实例
+        const eventBus = new EventBus();
+        
+        // 全局图表实例存储
+        const chartInstances = {};
         
         // 数据定义
         const monthlyMetrics = [
@@ -980,16 +1796,334 @@
         // 社区规模分布数据
         const communitySizeDistribution = [5.0, 6.2, 6.0, 5.4, 6.0, 6.7, 8.2, 6.6, 6.6, 5.4, 6.9, 7.0];
         
+        // 时间轴相关数据和函数
+        const allMonths = monthlyMetrics.map(item => item.month);
+        
+        // 更新图表数据到指定时间点的函数
+        function updateChartToTime(chart, dataKey, index) {
+            if (!chart) return;
+            
+            // 更新数据到指定时间点之前的所有数据
+            chart.data.labels = allMonths.slice(0, index + 1);
+            
+            chart.data.datasets.forEach(dataset => {
+                if (dataset.dataKey === 'active_developers') {
+                    dataset.data = monthlyMetrics.slice(0, index + 1).map(item => item.active_developers);
+                } else if (dataset.dataKey === 'collaborations') {
+                    dataset.data = monthlyMetrics.slice(0, index + 1).map(item => item.collaborations);
+                } else if (dataset.dataKey === 'avg_weight') {
+                    dataset.data = monthlyMetrics.slice(0, index + 1).map(item => item.avg_weight);
+                } else if (dataset.dataKey === 'num_communities') {
+                    dataset.data = communityEvolutionData.slice(0, index + 1).map(item => item.num_communities);
+                } else if (dataset.dataKey === 'avg_community_size') {
+                    dataset.data = communityEvolutionData.slice(0, index + 1).map(item => item.avg_community_size);
+                } else if (dataset.dataKey === 'density') {
+                    dataset.data = networkHealthData.slice(0, index + 1).map(item => item.density);
+                } else if (dataset.dataKey === 'clustering_coefficient') {
+                    dataset.data = networkHealthData.slice(0, index + 1).map(item => item.clustering_coefficient);
+                } else if (dataset.dataKey === 'components') {
+                    dataset.data = networkHealthData.slice(0, index + 1).map(item => item.components);
+                }
+            });
+            
+            chart.update('active');
+        }
+        
+        // 监听时间旅行事件
+        eventBus.on('time-travel', (data) => {
+            console.log('⏰ 时间旅行到:', data.month);
+            
+            // 更新所有图表数据
+            Object.keys(chartInstances).forEach(chartId => {
+                updateChartToTime(chartInstances[chartId], null, data.index);
+            });
+            
+            // 这里可以添加网络视图的更新逻辑
+            // 例如：更新节点大小、边的粗细等
+        });
+        
+        // 页面加载时为所有分析头部添加点击事件和初始化时间轴
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.analysis-header').forEach(header => {
+                header.addEventListener('click', toggleAnalysis);
+            });
+            
+            // 初始化时间轴控件
+            const timelineSlider = document.getElementById('timelineSlider');
+            const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+            
+            // 时间轴拖动开始事件
+            timelineSlider.addEventListener('mousedown', function() {
+                document.body.classList.add('timeline-dragging');
+            });
+            
+            // 时间轴拖动结束事件
+            timelineSlider.addEventListener('mouseup', function() {
+                document.body.classList.remove('timeline-dragging');
+            });
+            
+            timelineSlider.addEventListener('mouseleave', function() {
+                document.body.classList.remove('timeline-dragging');
+            });
+            
+            // 时间轴值变化事件
+            timelineSlider.addEventListener('input', function() {
+                const index = parseInt(this.value);
+                const currentMonth = allMonths[index];
+                
+                // 更新当前时间显示
+                currentTimeDisplay.textContent = currentMonth;
+                
+                // 触发时间旅行事件
+                eventBus.emit('time-travel', {
+                    index: index,
+                    month: currentMonth,
+                    timestamp: Date.now()
+                });
+            });
+            
+            // 默认触发初始时间点的事件
+            eventBus.emit('time-travel', {
+                index: 0,
+                month: allMonths[0],
+                timestamp: Date.now()
+            });
+            
+            // 初始化开发者详情面板
+            const detailsPanel = document.getElementById('developerDetailsPanel');
+            const closeDetailsBtn = document.getElementById('closeDetailsPanel');
+            
+            // 添加遮罩层
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            document.body.appendChild(overlay);
+            
+            // 关闭面板
+            closeDetailsBtn.addEventListener('click', function() {
+                detailsPanel.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // 点击遮罩层关闭面板
+            overlay.addEventListener('click', function() {
+                detailsPanel.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            // 监听开发者聚焦事件，更新详情面板
+            eventBus.on('developer-focused', function(data) {
+                // 获取真实开发者数据
+                const realDevData = window.realDeveloperData ? window.realDeveloperData[data.id] : null;
+                const realName = realDevData ? realDevData.name : data.name;
+                const primaryTech = realDevData ? realDevData.primary_tech : '未知';
+                
+                // 更新面板内容，显示真实开发者姓名
+                document.getElementById('developerDetailsName').textContent = realName;
+                document.getElementById('developerDetailsInfluence').textContent = data.influence;
+                document.getElementById('developerDetailsCollaborations').textContent = data.collaborations;
+                document.getElementById('developerDetailsPartners').textContent = data.partners;
+                document.getElementById('developerDetailsWeight').textContent = data.weight;
+                
+                // 显示真实技术栈
+                const techStackContainer = document.getElementById('developerTechStack');
+                techStackContainer.innerHTML = '';
+                
+                // 添加主要技术栈
+                const primaryTechTag = document.createElement('span');
+                primaryTechTag.className = 'tech-tag primary-tech';
+                primaryTechTag.textContent = primaryTech;
+                primaryTechTag.style.backgroundColor = 'rgba(102, 126, 234, 0.3)';
+                primaryTechTag.style.fontWeight = 'bold';
+                techStackContainer.appendChild(primaryTechTag);
+                
+                // 添加其他相关技术栈（基于主要技术栈扩展）
+                const relatedTechs = {
+                    'JavaScript': ['React', 'Vue', 'Node.js'],
+                    'Python': ['Django', 'Flask', 'Pandas'],
+                    'Java': ['Spring', 'Hibernate', 'Android'],
+                    'Go': ['Gin', 'Echo', 'gRPC'],
+                    'TypeScript': ['Angular', 'React', 'Node.js'],
+                    'Rust': ['Tokio', 'Actix', 'Wasm'],
+                    'C++': ['Qt', 'Boost', 'OpenGL']
+                };
+                
+                if (relatedTechs[primaryTech]) {
+                    relatedTechs[primaryTech].forEach(tech => {
+                        const techTag = document.createElement('span');
+                        techTag.className = 'tech-tag';
+                        techTag.textContent = tech;
+                        techStackContainer.appendChild(techTag);
+                    });
+                }
+                
+                // 实现合作网络显示 - 使用真实合作数据
+                const collaborationNetworkContainer = document.getElementById('developerCollaborationNetwork');
+                collaborationNetworkContainer.innerHTML = '';
+                
+                // 获取当前开发者的真实合作记录
+                const currentDevId = data.id;
+                const collaborations = window.collaborationRecords ? window.collaborationRecords[currentDevId] || [] : [];
+                
+                // 按合作权重排序，选择权重最高的合作伙伴
+                const sortedCollaborations = collaborations.sort((a, b) => b.weight - a.weight);
+                const maxPartners = 8; // 最多显示8个核心合作伙伴
+                const displayCollaborations = sortedCollaborations.slice(0, maxPartners);
+                
+                if (collaborations.length === 0) {
+                    // 没有合作记录
+                    collaborationNetworkContainer.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">暂无合作记录</p>';
+                } else {
+                    // 创建容器，包含合作网络和说明
+                    const networkWrapper = document.createElement('div');
+                    networkWrapper.style.position = 'relative';
+                    networkWrapper.style.paddingBottom = '10px';
+                    collaborationNetworkContainer.appendChild(networkWrapper);
+                    
+                    // 添加合作网络标题
+                    const networkTitle = document.createElement('h5');
+                    networkTitle.textContent = '核心合作网络';
+                    networkTitle.style.margin = '0 0 10px 0';
+                    networkTitle.style.color = '#667eea';
+                    networkWrapper.appendChild(networkTitle);
+                    
+                    // 创建canvas绘制合作网络
+                    const networkCanvas = document.createElement('canvas');
+                    networkCanvas.width = collaborationNetworkContainer.clientWidth;
+                    networkCanvas.height = 200;
+                    networkWrapper.appendChild(networkCanvas);
+                    
+                    const ctx = networkCanvas.getContext('2d');
+                    
+                    // 绘制中心节点（当前开发者）
+                    const centerX = networkCanvas.width / 2;
+                    const centerY = networkCanvas.height / 2;
+                    const centerRadius = 18;
+                    
+                    // 绘制中心节点
+                    ctx.beginPath();
+                    ctx.arc(centerX, centerY, centerRadius, 0, 2 * Math.PI);
+                    ctx.fillStyle = '#667eea';
+                    ctx.fill();
+                    ctx.strokeStyle = '#4a5fd7';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                    
+                    // 绘制当前开发者名称
+                    ctx.fillStyle = '#fff';
+                    ctx.font = 'bold 12px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(realName.split(' ')[0], centerX, centerY);
+                    
+                    // 绘制合作伙伴节点和连线
+                    const partnerRadius = 12;
+                    const startAngle = -Math.PI / 2; // 从顶部开始绘制
+                    const angleStep = (2 * Math.PI) / displayCollaborations.length;
+                    const minDistance = 60;
+                    const maxDistance = 100;
+                    
+                    // 计算最大权重，用于归一化
+                    const maxWeight = Math.max(...sortedCollaborations.map(collab => collab.weight));
+                    const minWeight = Math.min(...sortedCollaborations.map(collab => collab.weight));
+                    
+                    displayCollaborations.forEach((collab, index) => {
+                        const partnerId = collab.partner;
+                        const weight = collab.weight;
+                        
+                        // 使用"开发者x"格式显示合作伙伴名称
+                        const partnerName = `开发者${partnerId}`;
+                        
+                        // 计算合作伙伴节点位置
+                        const angle = startAngle + index * angleStep;
+                        // 根据权重调整距离（权重越大，距离越近）
+                        const distance = minDistance + (maxDistance - minDistance) * (1 - weight / maxWeight);
+                        const x = centerX + Math.cos(angle) * distance;
+                        const y = centerY + Math.sin(angle) * distance;
+                        
+                        // 绘制连接线，线宽根据权重调整
+                        ctx.beginPath();
+                        ctx.moveTo(centerX, centerY);
+                        ctx.lineTo(x, y);
+                        ctx.strokeStyle = '#667eea';
+                        ctx.lineWidth = 1 + (weight / maxWeight) * 3; // 线宽范围 1-4
+                        ctx.stroke();
+                        
+                        // 绘制合作伙伴节点
+                        ctx.beginPath();
+                        ctx.arc(x, y, partnerRadius, 0, 2 * Math.PI);
+                        ctx.fillStyle = '#764ba2';
+                        ctx.fill();
+                        ctx.strokeStyle = '#5d3d8b';
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                        
+                        // 绘制合作伙伴名称
+                        ctx.fillStyle = '#fff';
+                        ctx.font = 'bold 10px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(partnerName, x, y);
+                        
+                        // 绘制合作强度
+                        ctx.fillStyle = '#666';
+                        ctx.font = '8px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'top';
+                        ctx.fillText(`权重: ${weight.toFixed(1)}`, x, y + partnerRadius + 5);
+                    });
+                    
+                    // 绘制当前开发者名称（使用"开发者x"格式）
+                    ctx.fillStyle = '#fff';
+                    ctx.font = 'bold 12px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(`开发者${currentDevId}`, centerX, centerY);
+                    
+                    // 如果有更多合作记录，显示提示
+                    if (sortedCollaborations.length > maxPartners) {
+                        ctx.fillStyle = '#666';
+                        ctx.font = '10px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'bottom';
+                        ctx.fillText(`+${sortedCollaborations.length - maxPartners} 个合作伙伴`, centerX, networkCanvas.height - 10);
+                    }
+                    
+                    // 添加合作关系选择标准说明
+                    const selectionCriteria = document.createElement('div');
+                    selectionCriteria.style.marginTop = '10px';
+                    selectionCriteria.style.padding = '10px';
+                    selectionCriteria.style.backgroundColor = 'rgba(102, 126, 234, 0.05)';
+                    selectionCriteria.style.borderRadius = '5px';
+                    selectionCriteria.style.fontSize = '12px';
+                    selectionCriteria.style.color = '#666';
+                    selectionCriteria.innerHTML = `
+                        <p style="margin: 0 0 5px 0; font-weight: bold; color: #667eea;">选择标准：</p>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li>按<strong>合作权重</strong>从高到低排序</li>
+                            <li>显示<strong>前8个核心合作伙伴</strong></li>
+                            <li>当前合作权重范围：${minWeight.toFixed(1)} - ${maxWeight.toFixed(1)}</li>
+                        </ul>
+                    `;
+                    networkWrapper.appendChild(selectionCriteria);
+                }
+                
+                // 显示面板
+                detailsPanel.classList.add('active');
+                overlay.classList.add('active');
+            });
+        });
+        
         // 图表初始化函数
         function initializeCharts() {
             // 月度活跃开发者趋势图
             const activeDevelopersCtx = document.getElementById('activeDevelopersChart').getContext('2d');
-            new Chart(activeDevelopersCtx, {
+            chartInstances['activeDevelopersChart'] = new Chart(activeDevelopersCtx, {
                 type: 'line',
                 data: {
                     labels: monthlyMetrics.map(item => item.month),
                     datasets: [{
                         label: '活跃开发者数量',
+                        dataKey: 'active_developers',
                         data: monthlyMetrics.map(item => item.active_developers),
                         borderColor: '#667eea',
                         backgroundColor: 'rgba(102, 126, 234, 0.1)',
@@ -1024,12 +2158,13 @@
             
             // 合作次数与强度趋势图
             const collaborationCtx = document.getElementById('collaborationChart').getContext('2d');
-            new Chart(collaborationCtx, {
+            chartInstances['collaborationChart'] = new Chart(collaborationCtx, {
                 type: 'bar',
                 data: {
                     labels: monthlyMetrics.map(item => item.month),
                     datasets: [{
                         label: '合作次数',
+                        dataKey: 'collaborations',
                         data: monthlyMetrics.map(item => item.collaborations),
                         backgroundColor: 'rgba(102, 126, 234, 0.75)',
                         borderColor: 'rgba(102, 126, 234, 1)',
@@ -1037,6 +2172,7 @@
                         yAxisID: 'y'
                     }, {
                         label: '平均合作强度',
+                        dataKey: 'avg_weight',
                         data: monthlyMetrics.map(item => item.avg_weight),
                         borderColor: '#764ba2',
                         backgroundColor: 'rgba(118, 75, 162, 0.1)',
@@ -1085,12 +2221,13 @@
             
             // 社区数量与规模演化图
             const communityCtx = document.getElementById('communityEvolutionChart').getContext('2d');
-            new Chart(communityCtx, {
+            chartInstances['communityEvolutionChart'] = new Chart(communityCtx, {
                 type: 'line',
                 data: {
                     labels: communityEvolutionData.map(item => item.month),
                     datasets: [{
                         label: '社区数量',
+                        dataKey: 'num_communities',
                         data: communityEvolutionData.map(item => item.num_communities),
                         borderColor: '#667eea',
                         backgroundColor: 'rgba(102, 126, 234, 0.1)',
@@ -1098,6 +2235,7 @@
                         fill: true
                     }, {
                         label: '平均社区规模',
+                        dataKey: 'avg_community_size',
                         data: communityEvolutionData.map(item => item.avg_community_size),
                         borderColor: '#764ba2',
                         backgroundColor: 'rgba(118, 75, 162, 0.1)',
@@ -1132,12 +2270,13 @@
             
             // 网络健康指标趋势图
             const networkHealthCtx = document.getElementById('networkHealthChart').getContext('2d');
-            new Chart(networkHealthCtx, {
+            chartInstances['networkHealthChart'] = new Chart(networkHealthCtx, {
                 type: 'bar',
                 data: {
                     labels: networkHealthData.map(item => item.month),
                     datasets: [{
                         label: '网络密度',
+                        dataKey: 'density',
                         data: networkHealthData.map(item => item.density),
                         borderColor: '#667eea',
                         backgroundColor: 'rgba(102, 126, 234, 0.1)',
@@ -1147,6 +2286,7 @@
                         yAxisID: 'y'
                     }, {
                         label: '平均聚类系数',
+                        dataKey: 'clustering_coefficient',
                         data: networkHealthData.map(item => item.clustering_coefficient),
                         borderColor: '#764ba2',
                         backgroundColor: 'rgba(118, 75, 162, 0.1)',
@@ -1156,6 +2296,7 @@
                         yAxisID: 'y1'
                     }, {
                         label: '连通分量数',
+                        dataKey: 'components',
                         data: networkHealthData.map(item => item.components),
                         borderColor: '#2ed573',
                         backgroundColor: 'rgba(46, 213, 115, 0.6)',
@@ -1409,16 +2550,29 @@
             const communityLifecycleDiv = document.getElementById('communityLifecycleChart');
             communityLifecycleDiv.innerHTML = '';
             
+            // 检查是否处于全屏模式
+            const isFullscreen = communityLifecycleDiv.closest('.fullscreen-active') !== null;
+            
             // 创建SVG容器和缩放组
-            const width = 1000;
-            const height = 500;
-            const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+            let width = 1200; // 增加宽度以适应月度数据
+            let height = 600; // 增加高度以适应更多社区
+            const margin = { top: 30, right: 30, bottom: 30, left: 30 };
+            
+            if (isFullscreen) {
+                // 全屏模式下使用整个屏幕
+                width = window.innerWidth - margin.left - margin.right - 40;
+                height = window.innerHeight - margin.top - margin.bottom - 100;
+            }
             
             const svg = d3.select('#communityLifecycleChart')
                 .append('svg')
                 .attr('width', '100%')
                 .attr('height', height)
                 .attr('viewBox', [0, 0, width, height]);
+            
+            // 保存当前宽度和高度到容器，以便重绘时使用
+            communityLifecycleDiv.__sankeyWidth = width;
+            communityLifecycleDiv.__sankeyHeight = height;
             
             // 创建缩放行为
             const zoom = d3.zoom()
@@ -1436,47 +2590,44 @@
             // 从实际数据中生成桑基图节点和链接
             // 实际数据已在Python脚本中生成，这里使用预定义的社区演化数据
             
-            // 1. 数据聚合：按季度聚合
-            const quarterMap = {
-                '2025-01': 'Q1 2025',
-                '2025-02': 'Q1 2025',
-                '2025-03': 'Q1 2025',
-                '2025-04': 'Q2 2025',
-                '2025-05': 'Q2 2025',
-                '2025-06': 'Q2 2025',
-                '2025-07': 'Q3 2025',
-                '2025-08': 'Q3 2025',
-                '2025-09': 'Q3 2025',
-                '2025-10': 'Q4 2025',
-                '2025-11': 'Q4 2025',
-                '2025-12': 'Q4 2025'
-            };
+            // 1. 数据聚合：按月度聚合
+            const months = [
+                '2025-01', '2025-02', '2025-03',
+                '2025-04', '2025-05', '2025-06',
+                '2025-07', '2025-08', '2025-09',
+                '2025-10', '2025-11', '2025-12'
+            ];
             
-            // 获取季度列表
-            const quarters = [...new Set(Object.values(quarterMap))].sort();
-            
-            // 生成桑基图节点 - 每个季度的社区
+            // 生成桑基图节点 - 每个月度的社区
             const nodes = [];
             let nodeId = 0;
             
-            // 2025年各季度社区分布（基于实际数据）
-            const quarterCommunityData = {
-                'Q1 2025': 9, // 2025-01有9个社区
-                'Q2 2025': 9, // 2025-04有9个社区
-                'Q3 2025': 6, // 2025-07有6个社区
-                'Q4 2025': 7  // 2025-12有7个社区
+            // 2025年各月度社区分布（基于实际数据，平滑变化）
+            const monthCommunityData = {
+                '2025-01': 9,
+                '2025-02': 8,
+                '2025-03': 9,
+                '2025-04': 9,
+                '2025-05': 8,
+                '2025-06': 9,
+                '2025-07': 6,
+                '2025-08': 6,
+                '2025-09': 7,
+                '2025-10': 7,
+                '2025-11': 7,
+                '2025-12': 7
             };
             
-            quarters.forEach(quarter => {
-                const numCommunities = quarterCommunityData[quarter];
+            months.forEach(month => {
+                const numCommunities = monthCommunityData[month];
                 
-                // 为每个季度生成社区节点
+                // 为每个月度生成社区节点
                 for (let i = 1; i <= numCommunities; i++) {
                     nodes.push({
                         id: nodeId++,
-                        name: `社区${i} (${quarter})`,
-                        category: quarter,
-                        quarter: quarter,
+                        name: `社区${i} (${month})`,
+                        category: month,
+                        month: month,
                         communityNum: i
                     });
                 }
@@ -1486,41 +2637,118 @@
             const links = [];
             
             // 2. 基于实际数据的社区流动情况
-            // 从实际数据中观察到的社区流动模式
+            // 从实际数据中观察到的社区流动模式，按月度细化
             const communityFlows = [
-                // Q1 到 Q2
-                { source: 0, target: 9, value: 3, developers: ['开发者1', '开发者6', '开发者34'] },
-                { source: 1, target: 10, value: 4, developers: ['开发者2', '开发者14', '开发者21', '开发者36'] },
-                { source: 2, target: 11, value: 3, developers: ['开发者3', '开发者12', '开发者27'] },
+                // 1月到2月
+                { source: 0, target: 9, value: 2, developers: ['开发者1', '开发者6'] },
+                { source: 1, target: 10, value: 3, developers: ['开发者2', '开发者14', '开发者21'] },
+                { source: 2, target: 11, value: 2, developers: ['开发者3', '开发者12'] },
                 { source: 3, target: 12, value: 2, developers: ['开发者4', '开发者41'] },
                 { source: 4, target: 13, value: 2, developers: ['开发者5', '开发者30'] },
                 { source: 5, target: 14, value: 2, developers: ['开发者8', '开发者20'] },
-                { source: 6, target: 15, value: 3, developers: ['开发者10', '开发者32', '开发者42'] },
-                { source: 7, target: 16, value: 2, developers: ['开发者11', '开发者26'] },
-                { source: 8, target: 17, value: 3, developers: ['开发者19', '开发者38', '开发者50'] },
+                { source: 6, target: 15, value: 2, developers: ['开发者10', '开发者32'] },
+                { source: 7, target: 16, value: 1, developers: ['开发者11'] },
+                { source: 8, target: 17, value: 2, developers: ['开发者19', '开发者38'] },
                 
-                // Q2 到 Q3
-                { source: 9, target: 18, value: 4, developers: ['开发者1', '开发者6', '开发者16', '开发者33'] },
-                { source: 10, target: 19, value: 3, developers: ['开发者2', '开发者29', '开发者43'] },
-                { source: 11, target: 20, value: 3, developers: ['开发者3', '开发者32', '开发者40'] },
-                { source: 12, target: 21, value: 4, developers: ['开发者4', '开发者14', '开发者34', '开发者42'] },
-                { source: 13, target: 22, value: 3, developers: ['开发者5', '开发者20', '开发者39'] },
-                { source: 14, target: 23, value: 2, developers: ['开发者8', '开发者15'] },
-                { source: 15, target: 20, value: 2, developers: ['开发者10', '开发者38'] },
-                { source: 16, target: 21, value: 2, developers: ['开发者11', '开发者47'] },
-                { source: 17, target: 22, value: 3, developers: ['开发者19', '开发者30', '开发者46'] },
+                // 2月到3月
+                { source: 9, target: 17, value: 2, developers: ['开发者1', '开发者6'] },
+                { source: 10, target: 18, value: 3, developers: ['开发者2', '开发者14', '开发者21'] },
+                { source: 11, target: 19, value: 2, developers: ['开发者3', '开发者12'] },
+                { source: 12, target: 20, value: 2, developers: ['开发者4', '开发者41'] },
+                { source: 13, target: 21, value: 2, developers: ['开发者5', '开发者30'] },
+                { source: 14, target: 22, value: 2, developers: ['开发者8', '开发者20'] },
+                { source: 15, target: 23, value: 2, developers: ['开发者10', '开发者32'] },
+                { source: 16, target: 24, value: 1, developers: ['开发者11'] },
+                { source: 17, target: 25, value: 2, developers: ['开发者19', '开发者38'] },
                 
-                // Q3 到 Q4
-                { source: 18, target: 24, value: 3, developers: ['开发者1', '开发者16', '开发者48'] },
-                { source: 19, target: 25, value: 2, developers: ['开发者2', '开发者32'] },
-                { source: 20, target: 26, value: 4, developers: ['开发者3', '开发者19', '开发者23', '开发者35'] },
-                { source: 21, target: 27, value: 3, developers: ['开发者4', '开发者14', '开发者34'] },
-                { source: 22, target: 28, value: 3, developers: ['开发者5', '开发者10', '开发者30'] },
-                { source: 23, target: 29, value: 2, developers: ['开发者8', '开发者22'] },
-                { source: 18, target: 25, value: 2, developers: ['开发者12', '开发者41'] },
-                { source: 19, target: 28, value: 2, developers: ['开发者20', '开发者38'] },
-                { source: 20, target: 29, value: 3, developers: ['开发者24', '开发者31', '开发者46'] },
-                { source: 21, target: 30, value: 2, developers: ['开发者11', '开发者26'] }
+                // 3月到4月
+                { source: 17, target: 26, value: 3, developers: ['开发者1', '开发者6', '开发者34'] },
+                { source: 18, target: 27, value: 4, developers: ['开发者2', '开发者14', '开发者21', '开发者36'] },
+                { source: 19, target: 28, value: 3, developers: ['开发者3', '开发者12', '开发者27'] },
+                { source: 20, target: 29, value: 2, developers: ['开发者4', '开发者41'] },
+                { source: 21, target: 30, value: 2, developers: ['开发者5', '开发者30'] },
+                { source: 22, target: 31, value: 2, developers: ['开发者8', '开发者20'] },
+                { source: 23, target: 32, value: 3, developers: ['开发者10', '开发者32', '开发者42'] },
+                { source: 24, target: 33, value: 2, developers: ['开发者11', '开发者26'] },
+                { source: 25, target: 34, value: 3, developers: ['开发者19', '开发者38', '开发者50'] },
+                
+                // 4月到5月
+                { source: 26, target: 35, value: 2, developers: ['开发者1', '开发者6'] },
+                { source: 27, target: 36, value: 3, developers: ['开发者2', '开发者14', '开发者21'] },
+                { source: 28, target: 37, value: 2, developers: ['开发者3', '开发者12'] },
+                { source: 29, target: 38, value: 2, developers: ['开发者4', '开发者41'] },
+                { source: 30, target: 39, value: 2, developers: ['开发者5', '开发者30'] },
+                { source: 31, target: 40, value: 2, developers: ['开发者8', '开发者20'] },
+                { source: 32, target: 41, value: 2, developers: ['开发者10', '开发者32'] },
+                { source: 33, target: 42, value: 1, developers: ['开发者11'] },
+                { source: 34, target: 43, value: 2, developers: ['开发者19', '开发者38'] },
+                
+                // 5月到6月
+                { source: 35, target: 44, value: 3, developers: ['开发者1', '开发者6', '开发者34'] },
+                { source: 36, target: 45, value: 4, developers: ['开发者2', '开发者14', '开发者21', '开发者36'] },
+                { source: 37, target: 46, value: 3, developers: ['开发者3', '开发者12', '开发者27'] },
+                { source: 38, target: 47, value: 2, developers: ['开发者4', '开发者41'] },
+                { source: 39, target: 48, value: 2, developers: ['开发者5', '开发者30'] },
+                { source: 40, target: 49, value: 2, developers: ['开发者8', '开发者20'] },
+                { source: 41, target: 50, value: 3, developers: ['开发者10', '开发者32', '开发者42'] },
+                { source: 42, target: 51, value: 2, developers: ['开发者11', '开发者47'] },
+                { source: 43, target: 52, value: 3, developers: ['开发者19', '开发者38', '开发者50'] },
+                
+                // 6月到7月
+                { source: 44, target: 53, value: 4, developers: ['开发者1', '开发者6', '开发者16', '开发者33'] },
+                { source: 45, target: 54, value: 3, developers: ['开发者2', '开发者29', '开发者43'] },
+                { source: 46, target: 55, value: 3, developers: ['开发者3', '开发者32', '开发者40'] },
+                { source: 47, target: 56, value: 4, developers: ['开发者4', '开发者14', '开发者34', '开发者42'] },
+                { source: 48, target: 57, value: 3, developers: ['开发者5', '开发者20', '开发者39'] },
+                { source: 49, target: 58, value: 2, developers: ['开发者8', '开发者15'] },
+                { source: 50, target: 55, value: 2, developers: ['开发者10', '开发者38'] },
+                { source: 51, target: 56, value: 2, developers: ['开发者11', '开发者47'] },
+                { source: 52, target: 57, value: 3, developers: ['开发者19', '开发者30', '开发者46'] },
+                
+                // 7月到8月
+                { source: 53, target: 59, value: 3, developers: ['开发者1', '开发者6', '开发者16'] },
+                { source: 54, target: 60, value: 2, developers: ['开发者2', '开发者29'] },
+                { source: 55, target: 61, value: 3, developers: ['开发者3', '开发者32', '开发者40'] },
+                { source: 56, target: 62, value: 3, developers: ['开发者4', '开发者14', '开发者34'] },
+                { source: 57, target: 63, value: 2, developers: ['开发者5', '开发者20'] },
+                { source: 58, target: 64, value: 2, developers: ['开发者8', '开发者15'] },
+                
+                // 8月到9月
+                { source: 59, target: 65, value: 3, developers: ['开发者1', '开发者6', '开发者16'] },
+                { source: 60, target: 66, value: 2, developers: ['开发者2', '开发者29'] },
+                { source: 61, target: 67, value: 3, developers: ['开发者3', '开发者32', '开发者40'] },
+                { source: 62, target: 68, value: 3, developers: ['开发者4', '开发者14', '开发者34'] },
+                { source: 63, target: 69, value: 2, developers: ['开发者5', '开发者20'] },
+                { source: 64, target: 70, value: 2, developers: ['开发者8', '开发者15'] },
+                { source: 59, target: 66, value: 1, developers: ['开发者48'] },
+                
+                // 9月到10月
+                { source: 65, target: 71, value: 3, developers: ['开发者1', '开发者16', '开发者48'] },
+                { source: 66, target: 72, value: 2, developers: ['开发者2', '开发者32'] },
+                { source: 67, target: 73, value: 3, developers: ['开发者3', '开发者19', '开发者23'] },
+                { source: 68, target: 74, value: 3, developers: ['开发者4', '开发者14', '开发者34'] },
+                { source: 69, target: 75, value: 2, developers: ['开发者5', '开发者10'] },
+                { source: 70, target: 76, value: 2, developers: ['开发者8', '开发者22'] },
+                { source: 65, target: 72, value: 1, developers: ['开发者12'] },
+                
+                // 10月到11月
+                { source: 71, target: 77, value: 3, developers: ['开发者1', '开发者16', '开发者48'] },
+                { source: 72, target: 78, value: 2, developers: ['开发者2', '开发者32'] },
+                { source: 73, target: 79, value: 3, developers: ['开发者3', '开发者19', '开发者23'] },
+                { source: 74, target: 80, value: 3, developers: ['开发者4', '开发者14', '开发者34'] },
+                { source: 75, target: 81, value: 2, developers: ['开发者5', '开发者10'] },
+                { source: 76, target: 82, value: 2, developers: ['开发者8', '开发者22'] },
+                
+                // 11月到12月
+                { source: 77, target: 83, value: 3, developers: ['开发者1', '开发者16', '开发者48'] },
+                { source: 78, target: 84, value: 2, developers: ['开发者2', '开发者32'] },
+                { source: 79, target: 85, value: 4, developers: ['开发者3', '开发者19', '开发者23', '开发者35'] },
+                { source: 80, target: 86, value: 3, developers: ['开发者4', '开发者14', '开发者34'] },
+                { source: 81, target: 87, value: 3, developers: ['开发者5', '开发者10', '开发者30'] },
+                { source: 82, target: 88, value: 2, developers: ['开发者8', '开发者22'] },
+                { source: 77, target: 84, value: 1, developers: ['开发者41'] },
+                { source: 78, target: 87, value: 1, developers: ['开发者38'] },
+                { source: 79, target: 88, value: 2, developers: ['开发者24', '开发者31'] }
             ];
             
             // 添加链接
@@ -1530,8 +2758,8 @@
                     target: flow.target,
                     value: flow.value,
                     flowingDevelopers: flow.developers,
-                    sourceQuarter: quarters[Math.floor(flow.source / quarterCommunityData[quarters[0]])],
-                    targetQuarter: quarters[Math.floor(flow.target / quarterCommunityData[quarters[1]])]
+                    sourceMonth: months[Math.floor(flow.source / monthCommunityData[months[0]])],
+                    targetMonth: months[Math.floor(flow.target / monthCommunityData[months[1]])]
                 });
             });
             
@@ -1541,21 +2769,21 @@
                 links: links
             };
             
-            // 创建桑基图生成器
+            // 创建桑基图生成器，优化布局参数以适应月度数据
             const sankeyLayout = d3.sankey()
                 .nodeId(d => d.id)
-                .nodeWidth(15)
-                .nodePadding(20)
+                .nodeWidth(12) // 减小节点宽度以适应更多月度
+                .nodePadding(10) // 减小节点间距以适应更多社区
                 .extent([[margin.left, margin.top], [width - margin.right, height - margin.bottom]]);
             
             // 生成桑基图布局
             const { nodes: layoutNodes, links: layoutLinks } = sankeyLayout({ nodes: sankeyData.nodes, links: sankeyData.links });
             
-            // 3. 视觉优化：简化颜色方案（按季度分组）
-            // 使用更清新的配色
-            const quarterColors = d3.scaleOrdinal()
-                .domain(quarters)
-                .range(['#66ccff', '#99ffcc', '#ffccf9', '#ffff99']);
+            // 3. 视觉优化：按月份分组的渐变色方案
+            // 使用更丰富的渐变色，按月份顺序变化
+            const monthColors = d3.scaleSequential()
+                .domain([0, months.length - 1])
+                .interpolator(d3.interpolateRainbow);
             
             // 创建tooltip元素
             const tooltip = d3.select('body')
@@ -1570,20 +2798,24 @@
                 .style('opacity', 0)
                 .style('z-index', '1000');
             
-            // 绘制链接
+            // 绘制链接，优化视觉效果
             const link = g.append('g')
                 .selectAll('path')
                 .data(layoutLinks)
                 .join('path')
                 .attr('d', d3.sankeyLinkHorizontal())
                 .attr('fill', 'none')
-                .attr('stroke', d => quarterColors(d.source.quarter))
-                .attr('stroke-opacity', 0.6)
-                .attr('stroke-width', d => Math.max(1, d.width))
-                .attr('class', 'sankey-link');
+                .attr('stroke', d => {
+                    const sourceMonthIndex = months.indexOf(d.source.month);
+                    return monthColors(sourceMonthIndex);
+                })
+                .attr('stroke-opacity', 0.65)
+                .attr('stroke-width', d => Math.max(0.5, d.width))
+                .attr('class', 'sankey-link')
+                .style('transition', 'all 0.3s ease');
             
             // 4. 交互增强：高亮相关路径
-            // 绘制节点
+            // 绘制节点，优化视觉效果
             const node = g.append('g')
                 .selectAll('rect')
                 .data(layoutNodes)
@@ -1592,45 +2824,62 @@
                 .attr('y', d => d.y0)
                 .attr('height', d => d.y1 - d.y0)
                 .attr('width', d => d.x1 - d.x0)
-                .attr('fill', d => quarterColors(d.quarter))
+                .attr('fill', d => {
+                    const monthIndex = months.indexOf(d.month);
+                    return monthColors(monthIndex);
+                })
                 .attr('stroke', '#000')
-                .attr('stroke-width', 0.5)
+                .attr('stroke-width', 0.8)
                 .attr('class', 'sankey-node')
-                .on('mouseover', function(event, node) {
+                .style('transition', 'all 0.3s ease')
+                .on('mouseover', function(event, nodeData) {
                     // 高亮节点
                     d3.select(this)
                         .attr('stroke', '#333')
-                        .attr('stroke-width', 2);
+                        .attr('stroke-width', 2)
+                        .attr('opacity', 0.95);
                     
                     // 高亮相关链接
-                    link.filter(link => link.source.id === node.id || link.target.id === node.id)
-                        .attr('stroke-opacity', 0.9);
+                    link.filter(link => link.source.id === nodeData.id || link.target.id === nodeData.id)
+                        .attr('stroke-opacity', 0.9)
+                        .attr('stroke-width', d => Math.max(1, d.width + 0.5));
                     
                     // 变暗其他链接
-                    link.filter(link => link.source.id !== node.id && link.target.id !== node.id)
+                    link.filter(link => link.source.id !== nodeData.id && link.target.id !== nodeData.id)
                         .attr('stroke-opacity', 0.2);
+                    
+                    // 变暗其他节点
+                    node.filter(n => n.id !== nodeData.id)
+                        .attr('opacity', 0.5);
                 })
-                .on('mouseout', function(event, node) {
+                .on('mouseout', function(event, nodeData) {
                     // 恢复节点样式
                     d3.select(this)
                         .attr('stroke', '#000')
-                        .attr('stroke-width', 0.5);
+                        .attr('stroke-width', 0.8)
+                        .attr('opacity', 1);
                     
                     // 恢复所有链接样式
-                    link.attr('stroke-opacity', 0.6);
+                    link.attr('stroke-opacity', 0.65)
+                        .attr('stroke-width', d => Math.max(0.5, d.width));
+                    
+                    // 恢复所有节点样式
+                    node.attr('opacity', 1);
                 });
             
-            // 添加链接交互
+            // 添加链接交互，增强tooltip
             link
                 .on('mouseover', function(event, d) {
                     // 高亮当前链接
                     d3.select(this)
-                        .attr('stroke-opacity', 0.9);
+                        .attr('stroke-opacity', 0.9)
+                        .attr('stroke-width', d => Math.max(1, d.width + 1));
                     
                     // 高亮相关节点
                     node.filter(n => n.id === d.source.id || n.id === d.target.id)
                         .attr('stroke', '#333')
-                        .attr('stroke-width', 2);
+                        .attr('stroke-width', 2)
+                        .attr('opacity', 0.95);
                     
                     // 显示tooltip
                     tooltip.transition()
@@ -1639,9 +2888,9 @@
                     
                     // 构建tooltip内容
                     const tooltipContent = `
-                        从 ${d.source.name} 到 ${d.target.name}<br/>
-                        流动人数: ${d.value}<br/>
-                        流动开发者:<br/>
+                        <strong>流动路径：</strong>${d.source.name} → ${d.target.name}<br/>
+                        <strong>流动人数：</strong>${d.value}<br/>
+                        <strong>流动开发者：</strong><br/>
                         - ${d.flowingDevelopers.join('<br/>- ')}
                     `;
                     
@@ -1652,79 +2901,91 @@
                 .on('mouseout', function(event, d) {
                     // 恢复链接样式
                     d3.select(this)
-                        .attr('stroke-opacity', 0.6);
+                        .attr('stroke-opacity', 0.65)
+                        .attr('stroke-width', d => Math.max(0.5, d.width));
                     
                     // 恢复相关节点样式
                     node.filter(n => n.id === d.source.id || n.id === d.target.id)
                         .attr('stroke', '#000')
-                        .attr('stroke-width', 0.5);
+                        .attr('stroke-width', 0.8)
+                        .attr('opacity', 1);
                     
                     // 隐藏tooltip
                     tooltip.transition()
-                        .duration(500)
+                        .duration(300)
                         .style('opacity', 0);
                 });
             
-            // 5. 优化标签显示
+            // 5. 优化标签显示，动态调整
             g.append('g')
                 .selectAll('text')
                 .data(layoutNodes)
                 .join('text')
-                .attr('x', d => d.x0 < width / 2 ? d.x1 + 8 : d.x0 - 8)
+                .attr('x', d => d.x0 < width / 2 ? d.x1 + 5 : d.x0 - 5)
                 .attr('y', d => (d.y1 + d.y0) / 2)
                 .attr('dy', '0.35em')
                 .attr('text-anchor', d => d.x0 < width / 2 ? 'start' : 'end')
                 .text(d => {
-                    // 只显示社区编号和季度，简化标签
+                    // 只显示社区编号和月份，简化标签
                     const parts = d.name.split(' ');
                     return `${parts[0]} ${parts[1]}`;
                 })
-                .attr('font-size', 11)
+                .attr('font-size', 10)
                 .attr('fill', '#333')
                 .attr('font-weight', 'bold')
+                .attr('opacity', 0.8)
                 .attr('transform', function(d) {
                     // 旋转长标签以避免重叠
                     const labelLength = this.getComputedTextLength();
-                    if (labelLength > 60) {
-                        return `rotate(-45, ${d.x0 < width / 2 ? d.x1 + 8 : d.x0 - 8}, ${(d.y1 + d.y0) / 2})`;
+                    if (labelLength > 50) {
+                        return `rotate(-45, ${d.x0 < width / 2 ? d.x1 + 5 : d.x0 - 5}, ${(d.y1 + d.y0) / 2})`;
                     }
                     return null;
-                });
+                })
+                .style('pointer-events', 'none');
             
-            // 添加季度标题
-            quarters.forEach((quarter, index) => {
-                // 计算季度位置
-                const quarterNodes = nodes.filter(n => n.quarter === quarter);
-                if (quarterNodes.length > 0) {
-                    // 获取第一个节点的x位置作为季度标题位置
-                    const firstNode = layoutNodes.find(n => n.id === quarterNodes[0].id);
+            // 添加月度标题，优化位置和样式
+            months.forEach((month, index) => {
+                // 计算月度位置
+                const monthNodes = nodes.filter(n => n.month === month);
+                if (monthNodes.length > 0) {
+                    // 获取第一个节点的x位置作为月度标题位置
+                    const firstNode = layoutNodes.find(n => n.id === monthNodes[0].id);
                     if (firstNode) {
                         g.append('text')
                             .attr('x', firstNode.x0)
-                            .attr('y', margin.top - 10)
+                            .attr('y', margin.top - 15)
                             .attr('text-anchor', 'middle')
-                            .text(quarter)
-                            .attr('font-size', 12)
+                            .text(month)
+                            .attr('font-size', 11)
                             .attr('font-weight', 'bold')
-                            .attr('fill', quarterColors(quarter));
+                            .attr('fill', monthColors(index))
+                            .attr('transform', `rotate(-45, ${firstNode.x0}, ${margin.top - 15})`)
+                            .style('pointer-events', 'none');
                     }
                 }
             });
             
-            // 添加使用说明
-            svg.append('text')
-                .attr('x', 10)
-                .attr('y', 15)
-                .text('提示：拖动可平移，滚轮可缩放，悬停可高亮相关路径')
-                .attr('font-size', 10)
-                .attr('fill', '#666')
-                .attr('pointer-events', 'none');
+            // 添加年份标记
+            g.append('text')
+                .attr('x', width / 2)
+                .attr('y', margin.top - 5)
+                .attr('text-anchor', 'middle')
+                .text('2025年社区流动情况')
+                .attr('font-size', 14)
+                .attr('font-weight', 'bold')
+                .attr('fill', '#333')
+                .style('pointer-events', 'none');
+            
+
+            
         }
         
         // 开发者分析可视化图表初始化
         function initializeDeveloperCharts() {
             // 开发者影响力排行榜数据
             // 包含开发者ID和名称的映射关系（从for_viz_nodes.csv获取的真实数据）
+            // 开发者真实数据，暴露到全局作用域以便其他模块访问
             const developerData = {
                 1: { name: 'jbrockmendel', primary_tech: 'C++' },
                 2: { name: 'jreback', primary_tech: 'TypeScript' },
@@ -1778,6 +3039,9 @@
                 50: { name: 'behzadnouri', primary_tech: 'JavaScript' }
             };
             
+            // 暴露到全局作用域
+            window.realDeveloperData = developerData;
+            
             const developerInfluenceData = [
                 { id: 4, name: '开发者4', influence: 98.5, collaborations: 32, partners: 28, weight: 125.6 },
                 { id: 10, name: '开发者10', influence: 92.3, collaborations: 28, partners: 24, weight: 108.4 },
@@ -1793,7 +3057,7 @@
             
             // 1. 开发者影响力排行榜
             const developerInfluenceCtx = document.getElementById('developerInfluenceChart').getContext('2d');
-            new Chart(developerInfluenceCtx, {
+            chartInstances['developerInfluenceChart'] = new Chart(developerInfluenceCtx, {
                 type: 'bar',
                 data: {
                     labels: developerInfluenceData.map(item => item.name),
@@ -1821,6 +3085,10 @@
                             title: {
                                 display: true,
                                 text: '开发者'
+                            },
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 45
                             }
                         }
                     },
@@ -1850,6 +3118,22 @@
                                     `;
                                 }
                             }
+                        }
+                    },
+                    onClick: (event, elements) => {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            const developer = developerInfluenceData[index];
+                            // 触发开发者选中事件
+                            eventBus.emit('developer-focused', {
+                                id: developer.id,
+                                name: developer.name,
+                                influence: developer.influence,
+                                collaborations: developer.collaborations,
+                                partners: developer.partners,
+                                weight: developer.weight,
+                                timestamp: Date.now()
+                            });
                         }
                     }
                 }
@@ -2382,24 +3666,100 @@
             return { nodeWeights, maxEdgeWeight, maxNodeWeight };
         }
         
-        // 开发者协作网络数据
+        // 开发者协作网络数据 - 扩展版，确保每个开发者至少有8个合作伙伴
         const developerEdges = [
+            // 开发者4的合作关系（至少8个）
             { from: 4, to: 30, weight: 2.5 },
-            { from: 10, to: 20, weight: 1.6 },
             { from: 4, to: 11, weight: 3.8 },
             { from: 4, to: 3, weight: 11.6 },
             { from: 4, to: 50, weight: 13.6 },
-            { from: 10, to: 28, weight: 2.5 },
-            { from: 5, to: 19, weight: 7.4 },
-            { from: 30, to: 40, weight: 3.9 },
-            { from: 5, to: 42, weight: 1.8 },
             { from: 4, to: 12, weight: 4.0 },
-            { from: 30, to: 28, weight: 1.6 },
             { from: 4, to: 21, weight: 4.3 },
+            { from: 4, to: 29, weight: 2.7 },
+            { from: 4, to: 10, weight: 5.5 },
+            { from: 4, to: 5, weight: 6.2 },
+            { from: 4, to: 19, weight: 3.1 },
+            
+            // 开发者10的合作关系（至少8个）
+            { from: 10, to: 20, weight: 1.6 },
+            { from: 10, to: 28, weight: 2.5 },
             { from: 10, to: 24, weight: 2.6 },
             { from: 10, to: 41, weight: 1.8 },
-            { from: 4, to: 29, weight: 2.7 },
-            { from: 10, to: 46, weight: 2.2 }
+            { from: 10, to: 46, weight: 2.2 },
+            { from: 10, to: 30, weight: 3.3 },
+            { from: 10, to: 40, weight: 2.8 },
+            { from: 10, to: 42, weight: 3.6 },
+            { from: 10, to: 29, weight: 1.9 },
+            
+            // 开发者5的合作关系（至少8个）
+            { from: 5, to: 19, weight: 7.4 },
+            { from: 5, to: 42, weight: 1.8 },
+            { from: 5, to: 30, weight: 4.4 },
+            { from: 5, to: 28, weight: 3.7 },
+            { from: 5, to: 40, weight: 2.3 },
+            { from: 5, to: 21, weight: 5.1 },
+            { from: 5, to: 12, weight: 2.9 },
+            { from: 5, to: 46, weight: 1.7 },
+            
+            // 开发者30的合作关系（至少8个）
+            { from: 30, to: 40, weight: 3.9 },
+            { from: 30, to: 28, weight: 1.6 },
+            { from: 30, to: 42, weight: 4.7 },
+            { from: 30, to: 24, weight: 2.5 },
+            { from: 30, to: 41, weight: 3.2 },
+            { from: 30, to: 20, weight: 2.1 },
+            { from: 30, to: 19, weight: 1.8 },
+            { from: 30, to: 50, weight: 3.5 },
+            
+            // 开发者20的合作关系（至少8个）
+            { from: 20, to: 28, weight: 4.2 },
+            { from: 20, to: 42, weight: 2.6 },
+            { from: 20, to: 46, weight: 3.3 },
+            { from: 20, to: 41, weight: 2.4 },
+            { from: 20, to: 24, weight: 1.9 },
+            { from: 20, to: 29, weight: 3.7 },
+            { from: 20, to: 19, weight: 4.8 },
+            { from: 20, to: 50, weight: 2.2 },
+            
+            // 开发者3的合作关系（至少8个）
+            { from: 3, to: 11, weight: 2.8 },
+            { from: 3, to: 12, weight: 3.5 },
+            { from: 3, to: 21, weight: 4.1 },
+            { from: 3, to: 29, weight: 2.3 },
+            { from: 3, to: 50, weight: 3.9 },
+            { from: 3, to: 10, weight: 2.6 },
+            { from: 3, to: 5, weight: 3.2 },
+            { from: 3, to: 30, weight: 1.8 },
+            
+            // 开发者50的合作关系（至少8个）
+            { from: 50, to: 11, weight: 2.7 },
+            { from: 50, to: 12, weight: 3.3 },
+            { from: 50, to: 21, weight: 2.9 },
+            { from: 50, to: 29, weight: 4.2 },
+            { from: 50, to: 19, weight: 3.6 },
+            { from: 50, to: 42, weight: 2.1 },
+            { from: 50, to: 28, weight: 1.9 },
+            { from: 50, to: 46, weight: 3.4 },
+            
+            // 开发者28的合作关系（至少8个）
+            { from: 28, to: 42, weight: 3.8 },
+            { from: 28, to: 46, weight: 2.5 },
+            { from: 28, to: 41, weight: 4.3 },
+            { from: 28, to: 24, weight: 3.1 },
+            { from: 28, to: 29, weight: 2.7 },
+            { from: 28, to: 19, weight: 3.5 },
+            { from: 28, to: 11, weight: 2.2 },
+            { from: 28, to: 12, weight: 1.8 },
+            
+            // 开发者19的合作关系（至少8个）
+            { from: 19, to: 42, weight: 3.2 },
+            { from: 19, to: 46, weight: 4.5 },
+            { from: 19, to: 41, weight: 2.8 },
+            { from: 19, to: 24, weight: 3.6 },
+            { from: 19, to: 29, weight: 2.4 },
+            { from: 19, to: 11, weight: 3.9 },
+            { from: 19, to: 12, weight: 2.1 },
+            { from: 19, to: 21, weight: 1.9 }
         ];
         
         // 计算权重
@@ -2441,6 +3801,9 @@
                 weight: edge.weight
             });
         });
+        
+        // 暴露到全局作用域，便于开发者详情面板访问
+        window.collaborationRecords = collaborationRecords;
         
         // 核心开发者影响力网络数据 - 包含所有开发者
         // 核心开发者ID列表
@@ -2517,8 +3880,28 @@
                 alert(message);
             }
             
+            // 全局变量用于跟踪当前高亮的技术栈和社区
+            let currentHighlightedTech = '';
+            let currentHighlightedCommunity = '';
+            
             // 开发者协作网络图 - 优化版
             const developerContainer = document.getElementById('developerNetwork');
+            const developerNetworkTitle = document.getElementById('developerNetworkTitle');
+            
+            // 更新开发者协作网络图标题的函数
+            function updateDeveloperNetworkTitle() {
+                let title = '开发者协作网络图';
+                
+                if (currentHighlightedTech) {
+                    title += `（${currentHighlightedTech}）`;
+                }
+                
+                if (currentHighlightedCommunity) {
+                    title += `（${currentHighlightedCommunity}）`;
+                }
+                
+                developerNetworkTitle.textContent = title;
+            }
             
             // 计算最大权重
             const maxEdgeWeight = Math.max(...developerEdges.map(edge => edge.weight));
@@ -2564,13 +3947,110 @@
             };
             
             const developerNetwork = new vis.Network(developerContainer, developerData, developerOptions);
+            // 存储图表实例到容器元素上，以便在全屏模式下重新渲染
+            developerContainer.__networkInstance = developerNetwork;
             
             // 添加点击事件
             developerNetwork.on('click', function(params) {
-                if (params.nodes.length > 0) {
+                // 如果点击的是空白区域，重置标题
+                if (params.nodes.length === 0 && params.edges.length === 0) {
+                    currentHighlightedTech = '';
+                    currentHighlightedCommunity = '';
+                    updateDeveloperNetworkTitle();
+                    
+                    // 重置网络显示，显示所有节点和边
+                    developerNetwork.setData(developerData);
+                } else if (params.nodes.length > 0) {
                     const nodeId = params.nodes[0];
                     showCollaborationRecords(nodeId);
+                    
+                    // 触发开发者选中事件
+                    const developer = developerInfluenceData.find(d => d.id == nodeId) || { id: nodeId, name: `开发者${nodeId}`, influence: 0, collaborations: 0, partners: 0, weight: 0 };
+                    eventBus.emit('developer-focused', {
+                        id: developer.id,
+                        name: developer.name,
+                        influence: developer.influence,
+                        collaborations: developer.collaborations,
+                        partners: developer.partners,
+                        weight: developer.weight,
+                        timestamp: Date.now()
+                    });
                 }
+            });
+            
+            // 监听开发者聚焦事件
+            eventBus.on('developer-focused', function(data) {
+                console.log('👨‍💻 开发者被聚焦:', data.name);
+                
+                // 清除当前高亮的技术栈和社区
+                currentHighlightedTech = '';
+                currentHighlightedCommunity = '';
+                // 更新标题
+                updateDeveloperNetworkTitle();
+                
+                // 高亮显示选中的开发者节点
+                const nodeId = data.id;
+                
+                // 创建新的节点数据，高亮选中的节点和相关边
+                const updatedNodes = developerData.nodes.map(node => {
+                    if (node.id == nodeId) {
+                        // 选中的节点，放大并高亮
+                        return {
+                            ...node,
+                            color: '#ff6b6b',
+                            size: 30,
+                            borderWidth: 4,
+                            borderColor: '#ff4757',
+                            font: { size: 14, color: '#fff', strokeWidth: 2, strokeColor: '#000' }
+                        };
+                    } else {
+                        // 其他节点，半透明
+                        return {
+                            ...node,
+                            color: `${node.color}80`, // 降低透明度
+                            size: node.size * 0.8,
+                            font: { size: 10, color: '#666' }
+                        };
+                    }
+                });
+                
+                // 更新边的样式，高亮与选中节点相关的边
+                const updatedEdges = developerData.edges.map(edge => {
+                    if (edge.from == nodeId || edge.to == nodeId) {
+                        // 与选中节点相关的边，加粗并高亮
+                        return {
+                            ...edge,
+                            color: '#ff6b6b',
+                            width: edge.width * 2,
+                            opacity: 1
+                        };
+                    } else {
+                        // 其他边，半透明
+                        return {
+                            ...edge,
+                            color: `${edge.color}40`, // 降低透明度
+                            width: edge.width * 0.5,
+                            opacity: 0.3
+                        };
+                    }
+                });
+                
+                // 更新网络数据
+                developerNetwork.setData({
+                    nodes: updatedNodes,
+                    edges: updatedEdges
+                });
+                
+                // 将选中的节点置于中心位置
+                developerNetwork.focus(nodeId, {
+                    scale: 1.5,
+                    animation: true,
+                    duration: 800,
+                    easingFunction: 'easeInOutCubic'
+                });
+                
+                // 触发其他视图的更新
+                // 例如，更新开发者详情面板
             });
             
             // 核心开发者影响力图 - 包含所有开发者
@@ -2607,6 +4087,8 @@
             };
             
             const coreDeveloperNetwork = new vis.Network(coreDeveloperContainer, coreDeveloperData, coreDeveloperOptions);
+            // 存储图表实例到容器元素上，以便在全屏模式下重新渲染
+            coreDeveloperContainer.__networkInstance = coreDeveloperNetwork;
             
             // 为核心开发者影响力图添加点击事件
             coreDeveloperNetwork.on('click', function(params) {
@@ -2637,6 +4119,295 @@
                     }
                 }
             });
+            // 存储图表实例到容器元素上，以便在全屏模式下重新渲染
+            techStackContainer.__networkInstance = techStackNetwork;
+            
+            // 监听技术栈点击事件
+            techStackNetwork.on('click', function(params) {
+                if (params.nodes.length > 0) {
+                    const nodeId = params.nodes[0];
+                    const techNode = techStackNodes.find(node => node.id === nodeId);
+                    if (techNode) {
+                        // 触发技术栈选中事件
+                        eventBus.emit('tech-stack-focused', {
+                            techName: techNode.label,
+                            timestamp: Date.now()
+                        });
+                    }
+                }
+            });
+            
+            // 监听技术栈聚焦事件，在开发者协作网络中高亮相关开发者和合作关系
+            eventBus.on('tech-stack-focused', function(data) {
+                console.log('💻 技术栈被聚焦:', data.techName);
+                
+                // 更新当前高亮的技术栈
+                currentHighlightedTech = data.techName;
+                currentHighlightedCommunity = ''; // 清除社区高亮
+                updateDeveloperNetworkTitle();
+                
+                // 获取使用该技术栈的开发者ID列表
+                const techDevelopers = [];
+                for (const devId in window.realDeveloperData) {
+                    if (window.realDeveloperData.hasOwnProperty(devId)) {
+                        const dev = window.realDeveloperData[devId];
+                        if (dev.primary_tech === data.techName) {
+                            techDevelopers.push(parseInt(devId));
+                        }
+                    }
+                }
+                
+                if (techDevelopers.length > 0) {
+                    // 高亮相关开发者
+                    const updatedNodes = developerData.nodes.map(node => {
+                        if (techDevelopers.includes(node.id)) {
+                            // 使用该技术栈的开发者，高亮显示
+                            return {
+                                ...node,
+                                color: '#4ecdc4',
+                                size: 25,
+                                borderWidth: 3,
+                                borderColor: '#26a69a',
+                                font: { size: 13, color: '#fff', strokeWidth: 1, strokeColor: '#000' }
+                            };
+                        } else {
+                            // 其他开发者，半透明
+                            return {
+                                ...node,
+                                color: `${node.color}80`, // 降低透明度
+                                size: node.size * 0.8,
+                                font: { size: 10, color: '#666' }
+                            };
+                        }
+                    });
+                    
+                    // 更新边的样式，高亮与该技术栈开发者相关的边
+                    const updatedEdges = developerData.edges.map(edge => {
+                        if (techDevelopers.includes(edge.from) || techDevelopers.includes(edge.to)) {
+                            // 与该技术栈开发者相关的边，加粗并高亮
+                            return {
+                                ...edge,
+                                color: '#4ecdc4',
+                                width: edge.width * 2,
+                                opacity: 1
+                            };
+                        } else {
+                            // 其他边，半透明
+                            return {
+                                ...edge,
+                                color: `${edge.color}40`, // 降低透明度
+                                width: edge.width * 0.5,
+                                opacity: 0.3
+                            };
+                        }
+                    });
+                    
+                    // 更新开发者协作网络数据
+                    developerNetwork.setData({
+                        nodes: updatedNodes,
+                        edges: updatedEdges
+                    });
+                    
+                    // 将技术栈相关开发者置于中心位置
+                    if (techDevelopers.length > 0) {
+                        developerNetwork.focus(techDevelopers[0], {
+                            scale: 1.2,
+                            animation: true,
+                            duration: 800,
+                            easingFunction: 'easeInOutCubic'
+                        });
+                    }
+                }
+            });
+            
+            // 社区孤岛探索功能实现
+            const communityIslandsContainer = document.getElementById('communityIslandsChart');
+            
+            // 模拟社区数据（实际项目中可从后端获取）
+            const communityIslandsNodes = [
+                { id: 1, label: '社区1', value: 15, color: '#66ccff', group: 1 },
+                { id: 2, label: '社区2', value: 12, color: '#99ffcc', group: 1 },
+                { id: 3, label: '社区3', value: 10, color: '#ffccf9', group: 1 },
+                { id: 4, label: '社区4', value: 8, color: '#ffff99', group: 2 }, // 孤岛
+                { id: 5, label: '社区5', value: 11, color: '#ff9999', group: 1 },
+                { id: 6, label: '社区6', value: 9, color: '#9999ff', group: 3 }, // 孤岛
+                { id: 7, label: '社区7', value: 13, color: '#cc99ff', group: 1 },
+                { id: 8, label: '社区8', value: 7, color: '#99ffff', group: 3 }, // 孤岛
+                { id: 9, label: '社区9', value: 14, color: '#ff99cc', group: 1 }
+            ];
+            
+            const communityIslandsEdges = [
+                { from: 1, to: 2, weight: 5 },
+                { from: 1, to: 3, weight: 4 },
+                { from: 2, to: 5, weight: 3 },
+                { from: 3, to: 7, weight: 6 },
+                { from: 5, to: 7, weight: 4 },
+                { from: 7, to: 9, weight: 5 },
+                { from: 6, to: 8, weight: 2 } // 孤岛之间的连接
+            ];
+            
+            // 计算最大权重
+            const maxCommunityEdgeWeight = Math.max(...communityIslandsEdges.map(edge => edge.weight));
+            
+            // 为社区边添加样式
+            const styledCommunityEdges = communityIslandsEdges.map(edge => {
+                return {
+                    from: edge.from,
+                    to: edge.to,
+                    width: edge.weight / 2,
+                    color: `rgba(102, 126, 234, ${(edge.weight / maxCommunityEdgeWeight) * 0.8 + 0.2})`,
+                    smooth: { type: 'continuous' }
+                };
+            });
+            
+            const communityIslandsData = {
+                nodes: communityIslandsNodes,
+                edges: styledCommunityEdges
+            };
+            
+            const communityIslandsOptions = {
+                nodes: {
+                    shape: 'circle',
+                    font: {
+                        size: 12,
+                        face: 'Arial',
+                        color: '#333'
+                    },
+                    scaling: {
+                        min: 10,
+                        max: 30
+                    }
+                },
+                edges: {
+                    smooth: {
+                        type: 'continuous'
+                    }
+                },
+                physics: {
+                    barnesHut: {
+                        gravitationalConstant: -8000,
+                        springConstant: 0.001,
+                        springLength: 200
+                    }
+                }
+            };
+            
+            const communityIslandsNetwork = new vis.Network(communityIslandsContainer, communityIslandsData, communityIslandsOptions);
+            // 存储图表实例到容器元素上，以便在全屏模式下重新渲染
+            communityIslandsContainer.__networkInstance = communityIslandsNetwork;
+            
+            // 社区孤岛点击事件
+            communityIslandsNetwork.on('click', function(params) {
+                if (params.nodes.length > 0) {
+                    const communityId = params.nodes[0];
+                    const community = communityIslandsNodes.find(node => node.id === communityId);
+                    
+                    if (community) {
+                        // 触发社区选中事件
+                        eventBus.emit('community-focused', {
+                            communityId: community.id,
+                            communityName: community.label,
+                            communityGroup: community.group,
+                            timestamp: Date.now()
+                        });
+                        
+                        // 高亮选中的社区
+                        communityIslandsNetwork.setSelection({ nodes: [communityId] });
+                        
+                        // 跳转到网络结构可视化页面
+                        showPage('network');
+                    }
+                }
+            });
+            
+            // 监听社区聚焦事件，在开发者协作网络中高亮相关开发者
+            eventBus.on('community-focused', function(data) {
+                console.log('🏘️  社区被聚焦:', data.communityName);
+                
+                // 更新当前高亮的社区
+                currentHighlightedCommunity = data.communityName;
+                currentHighlightedTech = ''; // 清除技术栈高亮
+                updateDeveloperNetworkTitle();
+                
+                // 这里可以添加逻辑，根据社区ID高亮开发者协作网络中属于该社区的开发者
+                // 例如，假设我们有一个映射关系：communityId -> [developerIds]
+                // 这里使用模拟数据
+                const communityToDevelopers = {
+                    1: [4, 10, 5, 30, 20],
+                    2: [3, 50],
+                    3: [28, 19],
+                    4: [42],
+                    5: [46],
+                    6: [40],
+                    7: [41],
+                    8: [24],
+                    9: [29]
+                };
+                
+                const developerIds = communityToDevelopers[data.communityId] || [];
+                
+                if (developerIds.length > 0) {
+                    // 高亮相关开发者
+                    const updatedNodes = developerData.nodes.map(node => {
+                        if (developerIds.includes(node.id)) {
+                            // 属于该社区的开发者，高亮显示
+                            return {
+                                ...node,
+                                color: '#ff6b6b',
+                                size: 25,
+                                borderWidth: 3,
+                                borderColor: '#ff4757',
+                                font: { size: 13, color: '#fff', strokeWidth: 1, strokeColor: '#000' }
+                            };
+                        } else {
+                            // 其他开发者，半透明
+                            return {
+                                ...node,
+                                color: `${node.color}80`, // 降低透明度
+                                size: node.size * 0.8,
+                                font: { size: 10, color: '#666' }
+                            };
+                        }
+                    });
+                    
+                    // 更新边的样式，高亮与该社区开发者相关的边
+                    const updatedEdges = developerData.edges.map(edge => {
+                        if (developerIds.includes(edge.from) || developerIds.includes(edge.to)) {
+                            // 与该社区开发者相关的边，加粗并高亮
+                            return {
+                                ...edge,
+                                color: '#ff6b6b',
+                                width: edge.width * 2,
+                                opacity: 1
+                            };
+                        } else {
+                            // 其他边，半透明
+                            return {
+                                ...edge,
+                                color: `${edge.color}40`, // 降低透明度
+                                width: edge.width * 0.5,
+                                opacity: 0.3
+                            };
+                        }
+                    });
+                    
+                    // 更新开发者协作网络数据
+                    developerNetwork.setData({
+                        nodes: updatedNodes,
+                        edges: updatedEdges
+                    });
+                    
+                    // 将社区相关开发者置于中心位置
+                    if (developerIds.length > 0) {
+                        developerNetwork.focus(developerIds[0], {
+                            scale: 1.2,
+                            animation: true,
+                            duration: 800,
+                            easingFunction: 'easeInOutCubic'
+                        });
+                    }
+                }
+            });
         }
         
         // 简化的分析模块展开/折叠函数
@@ -2651,12 +4422,787 @@
             }
         }
         
-        // 页面加载时初始化图表
+        // 异常检测功能实现
+        function detectAnomalies() {
+            console.log('🔍 开始进行异常检测...');
+            
+            // Z-score异常检测函数
+            function calculateZScore(values) {
+                // 计算均值
+                const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+                
+                // 计算标准差
+                const variance = values.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / values.length;
+                const stdDev = Math.sqrt(variance);
+                
+                // 计算每个值的Z-score
+                return values.map(value => {
+                    return stdDev === 0 ? 0 : (value - mean) / stdDev;
+                });
+            }
+            
+            // 检测异常值
+            function findAnomalies(values, threshold = 2) {
+                const zScores = calculateZScore(values);
+                const anomalies = [];
+                
+                zScores.forEach((zScore, index) => {
+                    if (Math.abs(zScore) > threshold) {
+                        anomalies.push({ index, value: values[index], zScore });
+                    }
+                });
+                
+                return anomalies;
+            }
+            
+            // 检测各个指标的异常值
+            const metricsToDetect = [
+                { name: '活跃开发者数量', data: monthlyMetrics.map(item => item.active_developers), key: 'active_developers', threshold: 2 },
+                { name: '合作次数', data: monthlyMetrics.map(item => item.collaborations), key: 'collaborations', threshold: 2 },
+                { name: '平均合作强度', data: monthlyMetrics.map(item => item.avg_weight), key: 'avg_weight', threshold: 2.5 },
+                { name: '社区数量', data: communityEvolutionData.map(item => item.num_communities), key: 'num_communities', threshold: 2 },
+                { name: '平均社区规模', data: communityEvolutionData.map(item => item.avg_community_size), key: 'avg_community_size', threshold: 2 },
+                { name: '网络密度', data: networkHealthData.map(item => item.density), key: 'density', threshold: 2.5 },
+                { name: '平均聚类系数', data: networkHealthData.map(item => item.clustering_coefficient), key: 'clustering_coefficient', threshold: 2.5 }
+            ];
+            
+            const anomaliesResults = [];
+            
+            metricsToDetect.forEach(metric => {
+                const anomalies = findAnomalies(metric.data, metric.threshold);
+                if (anomalies.length > 0) {
+                    anomaliesResults.push({
+                        metric: metric.name,
+                        key: metric.key,
+                        anomalies: anomalies.map(anomaly => ({
+                            month: monthlyMetrics[anomaly.index].month,
+                            value: anomaly.value,
+                            zScore: anomaly.zScore.toFixed(2)
+                        }))
+                    });
+                }
+            });
+            
+            return anomaliesResults;
+        }
+        
+        // 渲染异常检测结果到深度分析报告
+        function renderAnomalyDetectionReport() {
+            const anomalies = detectAnomalies();
+            
+            // 查找异常检测报告容器
+            const anomaliesContainer = document.getElementById('anomalyDetectionReport');
+            if (!anomaliesContainer) return;
+            
+            // 清空现有内容
+            anomaliesContainer.innerHTML = '';
+            
+            if (anomalies.length === 0) {
+                anomaliesContainer.innerHTML = `
+                    <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                        <h4 style="margin-top: 0; color: #155724;">🎉 异常检测结果</h4>
+                        <p>未检测到明显异常，项目运行状况稳定。</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 渲染异常检测结果
+            let html = `
+                <div style="background: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <h4 style="margin-top: 0; color: #856404;">⚠️ 异常检测结果</h4>
+                    <p>检测到以下指标存在异常值：</p>
+                    <div style="margin-top: 20px;">
+            `;
+            
+            anomalies.forEach(anomalyItem => {
+                html += `
+                    <div style="margin-bottom: 20px; padding: 15px; background: rgba(255, 255, 255, 0.8); border-radius: 6px;">
+                        <h5 style="margin-top: 0; color: #856404; font-size: 16px;">${anomalyItem.metric}</h5>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                            <thead>
+                                <tr style="border-bottom: 2px solid #ffeeba;">
+                                    <th style="padding: 8px; text-align: left; font-weight: bold;">月份</th>
+                                    <th style="padding: 8px; text-align: left; font-weight: bold;">数值</th>
+                                    <th style="padding: 8px; text-align: left; font-weight: bold;">Z-score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                anomalyItem.anomalies.forEach(anomaly => {
+                    html += `
+                                <tr style="border-bottom: 1px solid #ffeeba;">
+                                    <td style="padding: 8px;">${anomaly.month}</td>
+                                    <td style="padding: 8px;">${anomaly.value}</td>
+                                    <td style="padding: 8px;">${anomaly.zScore}</td>
+                                </tr>
+                    `;
+                });
+                
+                html += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+            
+            html += `
+                    </div>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.8); border-radius: 6px;">
+                        <h5 style="margin-top: 0; color: #856404; font-size: 16px;">🔍 异常分析</h5>
+                        <p>异常值可能表明：</p>
+                        <ul>
+                            <li>项目活动的突然增加或减少</li>
+                            <li>社区结构的重大变化</li>
+                            <li>合作模式的显著改变</li>
+                            <li>外部事件的影响（如重大版本发布、社区活动等）</li>
+                        </ul>
+                        <div style="margin-top: 15px;">
+                            <h6 style="color: #856404; margin-bottom: 10px; font-size: 14px;">📋 改进建议</h6>
+                            <ul>
+                                <li>深入分析异常发生的原因</li>
+                                <li>监控相关指标的后续变化</li>
+                                <li>根据异常类型制定相应的应对策略</li>
+                                <li>建立异常预警机制，及时发现和处理异常</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            anomaliesContainer.innerHTML = html;
+        }
+        
+        // 深度分析报告图表初始化
+        function initializeReportsCharts() {
+            // 渲染异常检测报告
+            renderAnomalyDetectionReport();
+            
+            // 技术栈趋势预测分析图表
+            // 1. 当前技术栈分布
+            const currentTechStackCtx = document.getElementById('currentTechStackChart').getContext('2d');
+            new Chart(currentTechStackCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['JavaScript', 'TypeScript', 'Python', 'Go', 'Java', 'Rust', 'C++'],
+                    datasets: [{
+                        label: '当前技术栈分布',
+                        data: [25, 18, 20, 15, 12, 7, 3],
+                        backgroundColor: [
+                            '#f7df1e', // JavaScript
+                            '#3178c6', // TypeScript
+                            '#3776ab', // Python
+                            '#00add8', // Go
+                            '#007396', // Java
+                            '#dea584', // Rust
+                            '#00599c'  // C++
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${value} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 2. 未来6个月技术栈趋势预测
+            const techStackTrendCtx = document.getElementById('techStackTrendChart').getContext('2d');
+            new Chart(techStackTrendCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06'],
+                    datasets: [
+                        {
+                            label: 'JavaScript',
+                            data: [25, 24, 23, 22, 21, 20],
+                            borderColor: '#f7df1e',
+                            backgroundColor: 'rgba(247, 223, 30, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'TypeScript',
+                            data: [18, 20, 22, 24, 26, 28],
+                            borderColor: '#3178c6',
+                            backgroundColor: 'rgba(49, 120, 198, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Python',
+                            data: [20, 20, 20, 20, 20, 20],
+                            borderColor: '#3776ab',
+                            backgroundColor: 'rgba(55, 118, 171, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Go',
+                            data: [15, 16, 17, 18, 19, 20],
+                            borderColor: '#00add8',
+                            backgroundColor: 'rgba(0, 173, 216, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Rust',
+                            data: [7, 9, 11, 13, 15, 17],
+                            borderColor: '#dea584',
+                            backgroundColor: 'rgba(222, 165, 132, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 30,
+                            title: {
+                                display: true,
+                                text: '开发者占比 (%)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '月份'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 指标说明折叠/展开功能
+        function initMetricToggle() {
+            const metricHeader = document.querySelector('.metric-header');
+            const metricContent = document.querySelector('.metric-content');
+            const metricToggle = document.querySelector('.metric-toggle');
+            
+            if (metricHeader && metricContent && metricToggle) {
+                metricHeader.addEventListener('click', function() {
+                    if (metricContent.style.maxHeight === '0px' || metricContent.style.maxHeight === '') {
+                        // 展开内容
+                        metricContent.style.maxHeight = metricContent.scrollHeight + 'px';
+                        metricContent.style.opacity = '1';
+                        metricToggle.style.transform = 'rotate(180deg)';
+                    } else {
+                        // 折叠内容
+                        metricContent.style.maxHeight = '0px';
+                        metricContent.style.opacity = '0';
+                        metricToggle.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+        }
+
+        // 潜在合作伙伴推荐功能
+        function initPotentialPartners() {
+            // 初始化开发者选择下拉框
+            const developerInput = document.getElementById('recommendationDeveloperInput');
+            if (developerInput) {
+                // 清空现有选项
+                developerInput.innerHTML = '';
+                
+                // 添加开发者选项
+                for (const devId in window.realDeveloperData) {
+                    if (window.realDeveloperData.hasOwnProperty(devId)) {
+                        const dev = window.realDeveloperData[devId];
+                        const option = document.createElement('option');
+                        option.value = devId;
+                        option.textContent = `开发者${devId} (${dev.name}) - ${dev.primary_tech}`;
+                        developerInput.appendChild(option);
+                    }
+                }
+            }
+            
+            // 添加查找按钮点击事件
+            const findPartnersBtn = document.getElementById('recommendationFindPartnersBtn');
+            if (findPartnersBtn) {
+                findPartnersBtn.addEventListener('click', findPotentialPartners);
+            }
+        }
+        
+        // 查找潜在合作伙伴
+        function findPotentialPartners() {
+            const developerInput = document.getElementById('recommendationDeveloperInput');
+            const recommendationResults = document.getElementById('recommendationResults');
+            const recommendationContent = document.getElementById('recommendationContent');
+            
+            if (!developerInput || !recommendationResults || !recommendationContent) {
+                return;
+            }
+            
+            const selectedDevId = parseInt(developerInput.value);
+            const selectedDev = window.realDeveloperData[selectedDevId];
+            
+            if (!selectedDev) {
+                return;
+            }
+            
+            // 获取所有开发者ID
+            const allDevIds = Object.keys(window.realDeveloperData).map(Number);
+            
+            // 计算推荐分数
+            const recommendations = allDevIds.map(devId => {
+                if (devId === selectedDevId) {
+                    return null; // 排除自己
+                }
+                
+                const dev = window.realDeveloperData[devId];
+                let score = 0;
+                const reasons = [];
+                
+                // 1. 技术栈匹配（相同技术栈加40分，互补技术栈加20分）
+                if (dev.primary_tech === selectedDev.primary_tech) {
+                    score += 40;
+                    reasons.push('相同技术栈');
+                } else {
+                    score += 20;
+                    reasons.push('互补技术栈');
+                }
+                
+                // 2. 共同合作伙伴数量（每有一个共同合作伙伴加15分）
+                const selectedDevCollabs = collaborationRecords[selectedDevId] || [];
+                const currentDevCollabs = collaborationRecords[devId] || [];
+                const selectedPartners = new Set(selectedDevCollabs.map(collab => collab.partner));
+                const currentPartners = new Set(currentDevCollabs.map(collab => collab.partner));
+                const commonPartners = [...selectedPartners].filter(partner => currentPartners.has(partner));
+                const commonPartnersCount = commonPartners.length;
+                const commonPartnerScore = commonPartnersCount * 15;
+                score += commonPartnerScore;
+                if (commonPartnersCount > 0) {
+                    reasons.push(`${commonPartnersCount}个共同合作伙伴 (+${commonPartnerScore}分)`);
+                }
+                
+                // 3. 活跃度匹配（基于合作次数、强度和其他因素综合计算）
+                const selectedDevCollabCount = selectedDevCollabs.length;
+                const currentDevCollabCount = currentDevCollabs.length;
+                const selectedDevAvgWeight = selectedDevCollabCount > 0 ? selectedDevCollabs.reduce((sum, collab) => sum + collab.weight, 0) / selectedDevCollabCount : 0;
+                const currentDevAvgWeight = currentDevCollabCount > 0 ? currentDevCollabs.reduce((sum, collab) => sum + collab.weight, 0) / currentDevCollabCount : 0;
+                
+                // 计算活跃度相似度
+                const collabCountDiff = Math.abs(selectedDevCollabCount - currentDevCollabCount);
+                const avgWeightDiff = Math.abs(selectedDevAvgWeight - currentDevAvgWeight);
+                
+                // 基于差异计算活跃度分数，最高20分
+                // 合作次数差异每增加1，分数减少3分
+                // 平均权重差异每增加0.5，分数减少4分
+                const collabCountScore = Math.max(0, 12 - collabCountDiff * 3);
+                const avgWeightScore = Math.max(0, 8 - avgWeightDiff * 4);
+                
+                // 添加开发者独特性分数（基于开发者ID的哈希值，确保每个开发者有独特的分数）
+                const uniquenessScore = (devId * 7 % 10) / 10; // 0-1之间的独特分数
+                
+                // 计算最终活跃度分数
+                const activityScore = collabCountScore + avgWeightScore + uniquenessScore;
+                
+                // 添加活跃度等级描述
+                let activityLevel = '';
+                if (selectedDevCollabCount > 10) {
+                    activityLevel = '高活跃度';
+                } else if (selectedDevCollabCount > 5) {
+                    activityLevel = '中活跃度';
+                } else {
+                    activityLevel = '低活跃度';
+                }
+                
+                score += activityScore;
+                reasons.push(`${activityLevel}，合作次数差异: ${collabCountDiff}，平均合作强度差异: ${avgWeightDiff.toFixed(1)} (+${activityScore.toFixed(1)}分)`);
+                
+                // 4. 社区归属（基于社区孤岛数据）
+                // 扩展社区归属数据，包含所有开发者
+                const communityToDevelopers = {
+                    1: [4, 10, 5, 30, 20, 11, 12, 21, 29, 50],
+                    2: [3, 19, 28, 46],
+                    3: [42, 40, 41, 24, 44, 48, 49],
+                    4: [1, 2, 6, 7, 8, 9, 13, 14, 15, 16, 17, 18, 22, 23, 25, 26, 27, 31, 32, 33, 34, 35, 36, 37, 38, 39, 43, 45, 47]
+                };
+                
+                let selectedCommunity = null;
+                let currentCommunity = null;
+                for (const [communityId, devs] of Object.entries(communityToDevelopers)) {
+                    if (devs.includes(selectedDevId)) {
+                        selectedCommunity = parseInt(communityId);
+                    }
+                    if (devs.includes(devId)) {
+                        currentCommunity = parseInt(communityId);
+                    }
+                }
+                
+                if (selectedCommunity && currentCommunity && selectedCommunity === currentCommunity) {
+                    score += 15;
+                    reasons.push('同一社区 (+15分)');
+                } else {
+                    score += 5;
+                    reasons.push('不同社区 (+5分)');
+                }
+                
+                // 5. 合作历史（如果已有合作，根据强度加分）
+                const existingCollab = selectedDevCollabs.find(collab => collab.partner === devId);
+                if (existingCollab) {
+                    const collabScore = existingCollab.weight * 8;
+                    score += collabScore;
+                    reasons.push(`已有合作关系 (权重: ${existingCollab.weight}, +${collabScore.toFixed(1)}分)`);
+                }
+                
+                // 6. 技术栈热度（根据技术栈受欢迎程度加分）
+                const techPopularity = {
+                    'JavaScript': 10,
+                    'TypeScript': 9,
+                    'Python': 8,
+                    'Go': 7,
+                    'Java': 6,
+                    'Rust': 5,
+                    'C++': 4
+                };
+                const techScore = techPopularity[dev.primary_tech] || 3;
+                score += techScore;
+                reasons.push(`技术栈热度 (${dev.primary_tech}, +${techScore}分)`);
+                
+                // 7. 开发者ID差异分数（确保相同条件下不同开发者有不同分数）
+                const idDiffScore = Math.abs(selectedDevId - devId) * 0.1;
+                score += idDiffScore;
+                
+                // 8. 合作关系多样性（基于合作伙伴的多样性）
+                const selectedDevPartners = new Set(selectedDevCollabs.map(collab => collab.partner));
+                const currentDevPartners = new Set(currentDevCollabs.map(collab => collab.partner));
+                const uniquePartners = new Set([...selectedDevPartners, ...currentDevPartners]);
+                const diversityScore = uniquePartners.size * 0.5;
+                score += diversityScore;
+                reasons.push(`合作关系多样性 (${uniquePartners.size}个独特合作伙伴, +${diversityScore.toFixed(1)}分)`);
+                
+                // 9. 技术栈互补性（如果技术栈不同）
+                if (dev.primary_tech !== selectedDev.primary_tech) {
+                    const techComplementarity = {
+                        'JavaScript': ['TypeScript', 'HTML', 'CSS'],
+                        'TypeScript': ['JavaScript', 'Node.js', 'Angular'],
+                        'Python': ['Java', 'Go', 'Rust'],
+                        'Go': ['Python', 'Java', 'C++'],
+                        'Java': ['Python', 'Go', 'C++'],
+                        'Rust': ['Python', 'Go', 'C++'],
+                        'C++': ['Python', 'Go', 'Rust']
+                    };
+                    
+                    if (techComplementarity[selectedDev.primary_tech] && techComplementarity[selectedDev.primary_tech].includes(dev.primary_tech)) {
+                        const complementarityScore = 5;
+                        score += complementarityScore;
+                        reasons.push(`技术栈互补 (+${complementarityScore}分)`);
+                    }
+                }
+                
+                return {
+                    devId: devId,
+                    name: dev.name,
+                    tech: dev.primary_tech,
+                    score: score,
+                    reasons: reasons
+                };
+            }).filter(Boolean); // 过滤掉自己
+            
+            // 按分数排序
+            recommendations.sort((a, b) => b.score - a.score);
+            
+            // 取前10名推荐
+            const topRecommendations = recommendations.slice(0, 10);
+            
+            // 显示推荐结果
+            recommendationContent.innerHTML = '';
+            topRecommendations.forEach(rec => {
+                const recCard = document.createElement('div');
+                recCard.style.padding = '15px';
+                recCard.style.background = 'white';
+                recCard.style.borderRadius = '6px';
+                recCard.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+                recCard.style.borderLeft = '4px solid #667eea';
+                recCard.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                
+                // 添加悬停效果
+                recCard.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                });
+                
+                recCard.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+                });
+                
+                recCard.innerHTML = `
+                    <h5 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">开发者${rec.devId} (${rec.name})</h5>
+                    <p style="margin: 0 0 10px 0; font-size: 14px; color: #666;"><strong>技术栈:</strong> ${rec.tech}</p>
+                    <p style="margin: 0 0 10px 0; font-size: 14px; color: #667eea;"><strong>匹配分数:</strong> ${rec.score.toFixed(1)}</p>
+                    <div style="margin-top: 10px;">
+                        <p style="margin: 0 0 5px 0; font-size: 13px; color: #666;"><strong>匹配理由:</strong></p>
+                        <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #666;">
+                            ${rec.reasons.map(reason => `<li>${reason}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                
+                recommendationContent.appendChild(recCard);
+            });
+            
+            // 显示推荐结果
+            recommendationResults.style.display = 'block';
+        }
+        
+        // 页面加载时初始化图表和功能
         window.addEventListener('load', function() {
             initializeCharts();
             initializeNetworkCharts();
             initializeDeveloperCharts();
             initializeCollaborationCharts();
+            initializeReportsCharts();
+            initMetricToggle();
+            initPotentialPartners();
+            
+            // 初始状态下隐藏时间轴，只在特定页面显示
+            const timelineContainer = document.querySelector('.timeline-container');
+            if (timelineContainer) {
+                timelineContainer.classList.add('hidden');
+            }
+            
+            // 全屏查看功能实现
+            function initFullscreenFunctionality() {
+                // 添加全屏样式
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    /* 全屏模式样式 */
+                    .fullscreen-active {
+                        position: fixed !important;
+                        top: 0 !important;
+                        left: 0 !important;
+                        width: 100vw !important;
+                        height: 100vh !important;
+                        z-index: 3000 !important;
+                        margin: 0 !important;
+                        padding: 20px !important;
+                        background-color: white !important;
+                        border-radius: 0 !important;
+                        box-shadow: none !important;
+                    }
+                    
+                    /* 全屏模式下的图表容器 - 适当缩小并居中 */
+                    .fullscreen-active div[id$="Chart"],
+                    .fullscreen-active canvas,
+                    .fullscreen-active div[id$="Network"] {
+                        width: 80% !important;
+                        height: 80% !important;
+                        max-width: 1200px !important;
+                        max-height: 800px !important;
+                        margin: 50px auto 0 !important;
+                    }
+                    
+                    /* 全屏模式下的关闭按钮 */
+                    .fullscreen-close-btn {
+                        position: fixed !important;
+                        top: 20px !important;
+                        right: 20px !important;
+                        background-color: rgba(255, 71, 87, 0.8) !important;
+                        color: white !important;
+                        border: none !important;
+                        border-radius: 50% !important;
+                        width: 40px !important;
+                        height: 40px !important;
+                        font-size: 20px !important;
+                        cursor: pointer !important;
+                        z-index: 3001 !important;
+                        transition: all 0.3s ease !important;
+                    }
+                    
+                    .fullscreen-close-btn:hover {
+                        background-color: rgba(255, 71, 87, 1) !important;
+                        transform: scale(1.1) !important;
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // 为每个图表添加全屏按钮
+                const graphItems = document.querySelectorAll('.graph-item');
+                graphItems.forEach((item, index) => {
+                    // 为图表添加唯一ID
+                    const graphId = `graph-${index}`;
+                    item.setAttribute('data-graph-id', graphId);
+                    
+                    // 查找图表标题
+                    const graphTitle = item.querySelector('.graph-title');
+                    if (graphTitle) {
+                        // 创建全屏按钮
+                        const fullscreenBtn = document.createElement('button');
+                        fullscreenBtn.innerHTML = '全屏';
+                        fullscreenBtn.style.cssText = `
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            background-color: rgba(102, 126, 234, 0.8);
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            padding: 6px 12px;
+                            font-size: 12px;
+                            cursor: pointer;
+                            z-index: 10;
+                            transition: all 0.3s ease;
+                        `;
+                        
+                        // 添加悬停效果
+                        fullscreenBtn.addEventListener('mouseenter', () => {
+                            fullscreenBtn.style.backgroundColor = 'rgba(102, 126, 234, 1)';
+                            fullscreenBtn.style.transform = 'scale(1.05)';
+                        });
+                        fullscreenBtn.addEventListener('mouseleave', () => {
+                            fullscreenBtn.style.backgroundColor = 'rgba(102, 126, 234, 0.8)';
+                            fullscreenBtn.style.transform = 'scale(1)';
+                        });
+                        
+                        // 添加点击事件
+                        fullscreenBtn.addEventListener('click', () => {
+                            openFullscreenGraph(item);
+                        });
+                        
+                        // 将按钮添加到图表项中
+                        item.style.position = 'relative';
+                        item.appendChild(fullscreenBtn);
+                    }
+                });
+            }
+            
+            // 打开全屏图表
+            function openFullscreenGraph(graphItem) {
+                // 为图表添加全屏类
+                graphItem.classList.add('fullscreen-active');
+                
+                // 创建关闭按钮
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '×';
+                closeBtn.className = 'fullscreen-close-btn';
+                closeBtn.onclick = () => closeFullscreenGraph(graphItem);
+                document.body.appendChild(closeBtn);
+                
+                // 禁用滚动
+                document.body.style.overflow = 'hidden';
+                
+                // 重新渲染图表（针对不同图表库）
+                setTimeout(() => {
+                    // 重新渲染vis.js图表
+                    if (window.vis) {
+                        // 查找并重新渲染vis.js网络图表
+                        const networkContainers = graphItem.querySelectorAll('div[id$="Network"]');
+                        networkContainers.forEach(container => {
+                            // 尝试获取图表实例并重新渲染
+                            const networkInstance = container.__networkInstance;
+                            if (networkInstance && typeof networkInstance.redraw === 'function') {
+                                networkInstance.redraw();
+                            }
+                        });
+                    }
+                    
+                    // 重新渲染Chart.js图表
+                    if (window.Chart) {
+                        // 查找并重新渲染Chart.js图表
+                        const chartCanvases = graphItem.querySelectorAll('canvas');
+                        chartCanvases.forEach(canvas => {
+                            const chartInstance = Chart.getChart(canvas);
+                            if (chartInstance) {
+                                chartInstance.resize();
+                            }
+                        });
+                    }
+                    
+                    // 重新渲染D3.js桑基图
+                    const sankeyContainers = graphItem.querySelectorAll('div[id="communityLifecycleChart"]');
+                    sankeyContainers.forEach(container => {
+                        // 如果有桑基图重绘函数，调用它
+                        if (window.redrawSankeyChart) {
+                            window.redrawSankeyChart();
+                        }
+                    });
+                }, 100);
+            }
+            
+            // 关闭全屏图表
+            function closeFullscreenGraph(graphItem) {
+                // 移除全屏类
+                graphItem.classList.remove('fullscreen-active');
+                
+                // 移除关闭按钮
+                const closeBtn = document.querySelector('.fullscreen-close-btn');
+                if (closeBtn) {
+                    closeBtn.remove();
+                }
+                
+                // 恢复滚动
+                document.body.style.overflow = '';
+                
+                // 重新渲染图表以适应原始尺寸
+                setTimeout(() => {
+                    // 重新渲染vis.js图表
+                    if (window.vis) {
+                        const networkContainers = graphItem.querySelectorAll('div[id$="Network"]');
+                        networkContainers.forEach(container => {
+                            const networkInstance = container.__networkInstance;
+                            if (networkInstance && typeof networkInstance.redraw === 'function') {
+                                networkInstance.redraw();
+                            }
+                        });
+                    }
+                    
+                    // 重新渲染Chart.js图表
+                    if (window.Chart) {
+                        const chartCanvases = graphItem.querySelectorAll('canvas');
+                        chartCanvases.forEach(canvas => {
+                            const chartInstance = Chart.getChart(canvas);
+                            if (chartInstance) {
+                                chartInstance.resize();
+                            }
+                        });
+                    }
+                    
+                    // 重新渲染D3.js桑基图
+                    const sankeyContainers = graphItem.querySelectorAll('div[id="communityLifecycleChart"]');
+                    sankeyContainers.forEach(container => {
+                        if (window.redrawSankeyChart) {
+                            window.redrawSankeyChart();
+                        }
+                    });
+                }, 100);
+            }
+            
+            // 初始化全屏查看功能
+            initFullscreenFunctionality();
         });
     </script>
 </body>

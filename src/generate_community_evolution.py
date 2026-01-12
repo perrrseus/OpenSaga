@@ -6,6 +6,7 @@ import networkx as nx
 import os
 import sys
 
+
 def generate_community_evolution():
     """生成社区演化数据"""
     print("=" * 60)
@@ -13,10 +14,10 @@ def generate_community_evolution():
     print("=" * 60)
     
     # 获取项目根目录
-project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # 定义文件路径
-collab_path = os.path.join(project_path, 'data', 'collaborations_temporal.csv')
+    collab_path = os.path.join(project_path, 'data', 'collaborations_temporal.csv')
     developers_path = os.path.join(project_path, 'data', 'developers.csv')
     output_dir = os.path.join(project_path, 'data')
     
@@ -42,7 +43,7 @@ collab_path = os.path.join(project_path, 'data', 'collaborations_temporal.csv')
         print("未安装python-louvain，使用连通组件作为社区")
     
     # 初始化结果
-community_evolution = []
+    community_evolution = []
     monthly_summary = []
     
     # 按月份分组（按时间排序）
@@ -60,9 +61,11 @@ community_evolution = []
         for dev_id in active_devs:
             dev_info = developers_df[developers_df['developer_id'] == dev_id]
             if not dev_info.empty:
-                G_month.add_node(dev_id, 
-                               name=dev_info.iloc[0]['name'],
-                               tech=dev_info.iloc[0]['primary_tech'])
+                G_month.add_node(
+                    dev_id,
+                    name=dev_info.iloc[0]['name'],
+                    tech=dev_info.iloc[0]['primary_tech']
+                )
         
         # 添加该月的协作关系
         for _, edge in month_data.iterrows():
@@ -180,8 +183,16 @@ community_evolution = []
         print(f"   平均每月社区数: {monthly_summary_df['num_communities'].mean():.1f}")
         
         # 保存数据
-        community_evolution_df.to_csv(os.path.join(output_dir, 'community_evolution_detail.csv'), index=False, encoding='utf-8')
-        monthly_summary_df.to_csv(os.path.join(output_dir, 'community_evolution_monthly.csv'), index=False, encoding='utf-8')
+        community_evolution_df.to_csv(
+            os.path.join(output_dir, 'community_evolution_detail.csv'),
+            index=False,
+            encoding='utf-8'
+        )
+        monthly_summary_df.to_csv(
+            os.path.join(output_dir, 'community_evolution_monthly.csv'),
+            index=False,
+            encoding='utf-8'
+        )
         
         # 保存用于可视化的数据
         viz_dir = os.path.join(project_path, 'viz')
@@ -204,6 +215,7 @@ community_evolution = []
     else:
         print("未生成有效的社区演化数据")
         return None
+
 
 if __name__ == "__main__":
     generate_community_evolution()
